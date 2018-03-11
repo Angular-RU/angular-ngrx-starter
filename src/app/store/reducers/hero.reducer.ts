@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 
 import { Hero } from '../../models/hero';
-import { loadavg } from 'os';
 import { HeroActions, HeroActionTypes } from '../actions/hero.actions';
 
 export interface State {
