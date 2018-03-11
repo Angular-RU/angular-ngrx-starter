@@ -19,13 +19,13 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: HeroActions): State {
   switch (action.type) {
-    case HeroActionTypes.heroGet:
+    case HeroActionTypes.heroGetHeroes:
       return {
         ...state,
         loading: true
       };
 
-    case HeroActionTypes.heroGetSuccess:
+    case HeroActionTypes.heroGetHeroesSuccess:
       return {
         ...state,
         loading: false,
@@ -33,7 +33,7 @@ export function reducer(state = initialState, action: HeroActions): State {
         heroes: action.payload
       };
 
-    case HeroActionTypes.heroGetError:
+    case HeroActionTypes.heroError:
       return {
         ...state,
         loading: false,

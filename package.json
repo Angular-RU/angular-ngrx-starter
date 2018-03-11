@@ -31,6 +31,7 @@
     "@ngrx/entity": "^5.2.0",
     "@ngrx/router-store": "^5.2.0",
     "@ngrx/store": "^5.2.0",
+    "@ngrx/store-devtools": "^5.2.0",
     "angular-in-memory-web-api": "~0.5.4",
     "core-js": "^2.5.3",
     "rxjs": "^5.5.6",

@@ -10,12 +10,14 @@
   </button>
 </div>
 
-<ul class="heroes">
+<ul class="heroes"
+  *ngIf="heroes$ | async as heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
-    <button class="delete" title="delete hero"
-    (click)="delete(hero)">x</button>
+    <button class="delete"
+      title="delete hero"
+      (click)="delete(hero)">x</button>
   </li>
 </ul>

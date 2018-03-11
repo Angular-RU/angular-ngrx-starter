@@ -3,23 +3,35 @@ import { Action } from '@ngrx/store';
 import { Hero } from '../../models/hero';
 
 export enum HeroActionTypes {
-  heroGet = '[Hero] get',
-  heroGetSuccess = '[Hero] get success',
-  heroGetError = '[Hero] get error'
+  heroGetHeroes = '[Hero] get',
+  heroGetHeroesSuccess = '[Hero] get heroes success',
+  heroAddHero = '[Hero] add hero',
+  heroAddHeroSuccess = '[Hero] add hero success',
+  heroError = '[Hero] error'
 }
 
-export class HeroGet implements Action {
-  readonly type = HeroActionTypes.heroGet;
+export class HeroGetHeroes implements Action {
+  readonly type = HeroActionTypes.heroGetHeroes;
 }
 
-export class HeroGetSuccess implements Action {
-  readonly type = HeroActionTypes.heroGetSuccess;
-  constructor(public payload: Hero[]){}
+export class HeroGetHeroesSuccess implements Action {
+  readonly type = HeroActionTypes.heroGetHeroesSuccess;
+  constructor(public payload: Hero[]) {}
 }
 
-export class HeroGetError implements Action {
-  readonly type = HeroActionTypes.heroGetError;
-  constructor (public payload: any){}
+export class HeroAddHero implements Action {
+  readonly type = HeroActionTypes.heroAddHero;
+  constructor(public payload: string) {}
 }
 
-export type HeroActions = HeroGet | HeroGetSuccess | HeroGetError;
+export class heroAddHeroSuccess implements Action {
+  readonly type = HeroActionTypes.heroAddHero;
+  constructor(public payload: Hero) {}
+}
+
+export class HeroError implements Action {
+  readonly type = HeroActionTypes.heroError;
+  constructor(public payload: any) {}
+}
+
+export type HeroActions = HeroGetHeroes | HeroGetHeroesSuccess | HeroError;
