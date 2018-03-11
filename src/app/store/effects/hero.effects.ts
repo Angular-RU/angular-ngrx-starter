@@ -7,7 +7,9 @@ import {
   HeroAddHero,
   HeroAddHeroSuccess,
   HeroDeleteHeroSuccess,
-  HeroDeleteHero
+  HeroDeleteHero,
+  HeroGetHeroById,
+  HeroGetHeroByIdSuccess
 } from '../actions/hero.actions';
 import { HeroService } from '../../services/hero.service';
 import { switchMap, map, catchError, tap } from 'rxjs/operators';
@@ -23,6 +25,17 @@ export class HeroEffects {
     .pipe(
       switchMap(() => this.heroService.getHeroes()),
       map(heroes => new HeroGetHeroesSuccess(heroes)),
+      catchError(error => of(new HeroError(error)))
+    );
+
+  @Effect()
+  getHeroById$ = this.actions$
+    .ofType(HeroActionTypes.heroGetHeroById)
+    .pipe(
+      switchMap((action: HeroGetHeroById) =>
+        this.heroService.getHero(action.payload)
+      ),
+      map(hero => new HeroGetHeroByIdSuccess(hero)),
       catchError(error => of(new HeroError(error)))
     );
 

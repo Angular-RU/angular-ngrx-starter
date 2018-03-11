@@ -27,6 +27,17 @@ export const getHeroesLoading = createSelector(
   (heroStore: fromHeroReducer.State) => heroStore.loading
 );
 
+export const getSelectedHeroId = createSelector(
+  getHeroStore,
+  (heroStore: fromHeroReducer.State) => heroStore.selectedHeroId
+);
+
+export const getHeroById = createSelector(
+  getHeroEntities,
+  getSelectedHeroId,
+  (entities, id) => entities.find(i => i.id === id)
+);
+
 export const getHeroesError = createSelector(
   getHeroStore,
   (heroStore: fromHeroReducer.State) => heroStore.error

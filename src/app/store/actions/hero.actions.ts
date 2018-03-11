@@ -9,6 +9,8 @@ export enum HeroActionTypes {
   heroAddHeroSuccess = '[Hero] add hero success',
   heroDeleteHero = '[Hero] delete hero',
   heroDeleteHeroSuccess = '[Hero] delete hero success',
+  heroGetHeroById = '[Hero] get hero by id',
+  heroGetHeroByIdSuccess = '[Hero] get hero by id success',
   heroError = '[Hero] error'
 }
 
@@ -28,6 +30,16 @@ export class HeroAddHero implements Action {
 
 export class HeroAddHeroSuccess implements Action {
   readonly type = HeroActionTypes.heroAddHeroSuccess;
+  constructor(public payload: Hero) {}
+}
+
+export class HeroGetHeroById implements Action {
+  readonly type = HeroActionTypes.heroGetHeroById;
+  constructor(public payload: number) {}
+}
+
+export class HeroGetHeroByIdSuccess implements Action {
+  readonly type = HeroActionTypes.heroGetHeroByIdSuccess;
   constructor(public payload: Hero) {}
 }
 
@@ -51,6 +63,8 @@ export type HeroActions =
   | HeroGetHeroesSuccess
   | HeroAddHero
   | HeroAddHeroSuccess
+  | HeroGetHeroById
+  | HeroGetHeroByIdSuccess
   | HeroDeleteHero
   | HeroDeleteHeroSuccess
   | HeroError;

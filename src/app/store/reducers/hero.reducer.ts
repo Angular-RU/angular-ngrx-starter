@@ -8,6 +8,7 @@ export interface State extends EntityState<Hero> {
   loaded: boolean;
   loading: boolean;
   error: any;
+  selectedHeroId: number;
 }
 
 export const adapter: EntityAdapter<Hero> = createEntityAdapter<Hero>();
@@ -15,6 +16,7 @@ export const adapter: EntityAdapter<Hero> = createEntityAdapter<Hero>();
 export const initialState: State = adapter.getInitialState({
   loaded: false,
   loading: false,
+  selectedHeroId: null,
   error: null
 });
 
@@ -23,6 +25,7 @@ export function reducer(state = initialState, action: HeroActions): State {
     case HeroActionTypes.heroGetHeroes:
     case HeroActionTypes.heroAddHero:
     case HeroActionTypes.heroDeleteHero:
+    case HeroActionTypes.heroGetHeroById:
       return {
         ...state,
         loading: true
@@ -35,13 +38,15 @@ export function reducer(state = initialState, action: HeroActions): State {
         loaded: true
       });
 
-    case HeroActionTypes.heroAddHeroSuccess: {
+    case HeroActionTypes.heroGetHeroByIdSuccess:
+      return { ...state, selectedHeroId: action.payload.id };
+
+    case HeroActionTypes.heroAddHeroSuccess:
       return adapter.addOne(action.payload, {
         ...state,
         loading: false,
         loaded: true
       });
-    }
 
     case HeroActionTypes.heroDeleteHeroSuccess: {
       return adapter.removeOne(action.payload.id, {
