@@ -6,14 +6,14 @@ import { HeroActions, HeroActionTypes } from '../actions/hero.actions';
 export interface State {
   loaded: boolean;
   loading: boolean;
-  heroes: Hero[];
+  entities: { [id: number]: Hero };
   error: any;
 }
 
 export const initialState: State = {
   loaded: false,
   loading: false,
-  heroes: [],
+  entities: {},
   error: null
 };
 
@@ -28,30 +28,46 @@ export function reducer(state = initialState, action: HeroActions): State {
       };
 
     case HeroActionTypes.heroGetHeroesSuccess:
+      const entities = action.payload.reduce(
+        (entities: { [id: number]: Hero }, hero: Hero) => {
+          return {
+            ...entities,
+            [hero.id]: hero
+          };
+        },
+        {
+          ...state.entities
+        }
+      );
+
       return {
         ...state,
         loading: false,
         loaded: true,
-        heroes: action.payload
+        entities
       };
 
     case HeroActionTypes.heroAddHeroSuccess: {
-      const heroes = [...state.heroes, action.payload];
+      const entities = {
+        ...state.entities,
+        [action.payload.id]: action.payload
+      };
       return {
         ...state,
         loading: false,
         loaded: true,
-        heroes
+        entities
       };
     }
 
     case HeroActionTypes.heroDeleteHeroSuccess: {
-      const heroes = state.heroes.filter(i => i.id !== action.payload.id);
+      const entities = { ...state.entities };
+      delete entities[action.payload.id];
       return {
         ...state,
         loading: false,
         loaded: true,
-        heroes
+        entities
       };
     }
 

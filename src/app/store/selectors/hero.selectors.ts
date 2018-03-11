@@ -4,10 +4,14 @@ import * as fromHeroReducer from '../reducers/hero.reducer';
 
 export const getHeroStore = createFeatureSelector('hero');
 
-export const getHeroes = createSelector(
+export const getHeroEntities = createSelector(
   getHeroStore,
-  (heroStore: fromHeroReducer.State) => heroStore.heroes
+  (heroStore: fromHeroReducer.State) => heroStore.entities
 );
+
+export const getHeroes = createSelector(getHeroEntities, entities => {
+  return Object.keys(entities).map(id => entities[parseInt(id, 10)]);
+});
 
 export const getHeroesLoaded = createSelector(
   getHeroStore,
