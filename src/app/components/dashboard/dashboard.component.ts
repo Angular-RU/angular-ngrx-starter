@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store, select } from '@ngrx/store';
+
 import { Hero } from '../../models/hero';
 import { HeroService } from '../../services/hero.service';
+
+import * as fromHeroReducer from '../../store/reducers/hero.reducer';
+import * as fromHeroActions from '../../store/actions/hero.actions';
+import * as fromHeroSelectors from '../../store/selectors/hero.selectors';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: [ './dashboard.component.css' ]
+  styleUrls: ['./dashboard.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
+  topHeroes$: Observable<Hero[]>;
 
-  constructor(private heroService: HeroService) { }
+  constructor(private store: Store<fromHeroReducer.State>) {}
 
   ngOnInit() {
-    this.getHeroes();
-  }
-
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+    this.topHeroes$ = this.store.pipe(select(fromHeroSelectors.getTopHeroes));
   }
 }

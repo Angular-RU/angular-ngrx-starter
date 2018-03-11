@@ -23,7 +23,6 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit() {
     this.heroes$ = this.store.pipe(select(fromHeroSelectors.getHeroes));
-    this.store.dispatch(new fromHeroActions.HeroGetHeroes());
   }
 
   add(name: string): void {
