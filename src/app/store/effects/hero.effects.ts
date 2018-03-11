@@ -16,6 +16,8 @@ import { HeroService } from '../../services/hero.service';
 import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
+import * as fromRouterActions from '../actions/router.actions';
+
 @Injectable()
 export class HeroEffects {
   constructor(private actions$: Actions, private heroService: HeroService) {}
@@ -78,4 +80,11 @@ export class HeroEffects {
           )
       )
     );
+
+  @Effect()
+  updateHeroSuccess$ = this.actions$
+    .ofType(HeroActionTypes.heroUpdateHeroSuccess)
+    .pipe(map(hero => new fromRouterActions.Go({
+      path: ['/heroes']
+    })));
 }

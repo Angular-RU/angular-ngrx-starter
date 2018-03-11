@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -33,6 +34,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),
+    StoreRouterConnectingModule,
     !environment.production
       ? StoreDevtoolsModule.instrument({ maxAge: 50 })
       : [],
