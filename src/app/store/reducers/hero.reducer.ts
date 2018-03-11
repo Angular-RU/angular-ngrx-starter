@@ -1,5 +1,10 @@
 import { Action } from '@ngrx/store';
-import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity';
+import {
+  EntityAdapter,
+  createEntityAdapter,
+  EntityState,
+  Update
+} from '@ngrx/entity';
 
 import { Hero } from '../../models/hero';
 import { HeroActions, HeroActionTypes } from '../actions/hero.actions';
@@ -25,6 +30,7 @@ export function reducer(state = initialState, action: HeroActions): State {
     case HeroActionTypes.heroGetHeroes:
     case HeroActionTypes.heroAddHero:
     case HeroActionTypes.heroDeleteHero:
+    case HeroActionTypes.heroUpdateHero:
     case HeroActionTypes.heroGetHeroById:
       return {
         ...state,
@@ -47,6 +53,20 @@ export function reducer(state = initialState, action: HeroActions): State {
         loading: false,
         loaded: true
       });
+
+    case HeroActionTypes.heroUpdateHeroSuccess: {
+      return adapter.updateOne(
+        {
+          id: action.payload.id,
+          changes: action.payload
+        },
+        {
+          ...state,
+          loading: false,
+          loaded: true
+        }
+      );
+    }
 
     case HeroActionTypes.heroDeleteHeroSuccess: {
       return adapter.removeOne(action.payload.id, {
