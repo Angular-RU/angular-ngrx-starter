@@ -5,10 +5,12 @@ import {
   HeroGetHeroesSuccess,
   HeroError,
   HeroAddHero,
-  heroAddHeroSuccess
+  HeroAddHeroSuccess,
+  HeroDeleteHeroSuccess,
+  HeroDeleteHero
 } from '../actions/hero.actions';
 import { HeroService } from '../../services/hero.service';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
@@ -31,7 +33,21 @@ export class HeroEffects {
       switchMap((action: HeroAddHero) =>
         this.heroService.addHero(action.payload)
       ),
-      map(hero => new heroAddHeroSuccess(hero)),
+      map(hero => new HeroAddHeroSuccess(hero)),
       catchError(error => of(new HeroError(error)))
+    );
+
+  @Effect()
+  deleteHero$ = this.actions$
+    .ofType(HeroActionTypes.heroDeleteHero)
+    .pipe(
+      switchMap((action: HeroDeleteHero) =>
+        this.heroService
+          .deleteHero(action.payload)
+          .pipe(
+            map(() => new HeroDeleteHeroSuccess(action.payload)),
+            catchError(error => of(new HeroError(error)))
+          )
+      )
     );
 }

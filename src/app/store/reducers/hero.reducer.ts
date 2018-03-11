@@ -21,6 +21,7 @@ export function reducer(state = initialState, action: HeroActions): State {
   switch (action.type) {
     case HeroActionTypes.heroGetHeroes:
     case HeroActionTypes.heroAddHero:
+    case HeroActionTypes.heroDeleteHero:
       return {
         ...state,
         loading: true
@@ -34,7 +35,7 @@ export function reducer(state = initialState, action: HeroActions): State {
         heroes: action.payload
       };
 
-    case HeroActionTypes.heroAddHeroSuccess:
+    case HeroActionTypes.heroAddHeroSuccess: {
       const heroes = [...state.heroes, action.payload];
       return {
         ...state,
@@ -42,6 +43,17 @@ export function reducer(state = initialState, action: HeroActions): State {
         loaded: true,
         heroes
       };
+    }
+
+    case HeroActionTypes.heroDeleteHeroSuccess: {
+      const heroes = state.heroes.filter(i => i.id !== action.payload.id);
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        heroes
+      };
+    }
 
     case HeroActionTypes.heroError:
       return {
