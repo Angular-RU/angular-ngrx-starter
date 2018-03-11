@@ -6,17 +6,15 @@ export const getHeroStore = createFeatureSelector('hero');
 
 export const getHeroEntities = createSelector(
   getHeroStore,
-  (heroStore: fromHeroReducer.State) => heroStore.entities
+  fromHeroReducer.heroEntitySelectors.selectAll
 );
 
 export const getHeroes = createSelector(getHeroEntities, entities => {
-  return Object.keys(entities).map(id => entities[parseInt(id, 10)]);
+  return Object.values(entities);
 });
 
 export const getTopHeroes = createSelector(getHeroEntities, entities => {
-  return Object.keys(entities)
-    .map(id => entities[parseInt(id, 10)])
-    .slice(1, 5);
+  return Object.values(entities).slice(1, 5);
 });
 
 export const getHeroesLoaded = createSelector(

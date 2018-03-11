@@ -1,21 +1,22 @@
 import { Action } from '@ngrx/store';
+import { EntityAdapter, createEntityAdapter, EntityState } from '@ngrx/entity';
 
 import { Hero } from '../../models/hero';
 import { HeroActions, HeroActionTypes } from '../actions/hero.actions';
 
-export interface State {
+export interface State extends EntityState<Hero> {
   loaded: boolean;
   loading: boolean;
-  entities: { [id: number]: Hero };
   error: any;
 }
 
-export const initialState: State = {
+export const adapter: EntityAdapter<Hero> = createEntityAdapter<Hero>();
+
+export const initialState: State = adapter.getInitialState({
   loaded: false,
   loading: false,
-  entities: {},
   error: null
-};
+});
 
 export function reducer(state = initialState, action: HeroActions): State {
   switch (action.type) {
@@ -28,47 +29,26 @@ export function reducer(state = initialState, action: HeroActions): State {
       };
 
     case HeroActionTypes.heroGetHeroesSuccess:
-      const entities = action.payload.reduce(
-        (entities: { [id: number]: Hero }, hero: Hero) => {
-          return {
-            ...entities,
-            [hero.id]: hero
-          };
-        },
-        {
-          ...state.entities
-        }
-      );
-
-      return {
+      return adapter.addAll(action.payload, {
         ...state,
         loading: false,
-        loaded: true,
-        entities
-      };
+        loaded: true
+      });
 
     case HeroActionTypes.heroAddHeroSuccess: {
-      const entities = {
-        ...state.entities,
-        [action.payload.id]: action.payload
-      };
-      return {
+      return adapter.addOne(action.payload, {
         ...state,
         loading: false,
-        loaded: true,
-        entities
-      };
+        loaded: true
+      });
     }
 
     case HeroActionTypes.heroDeleteHeroSuccess: {
-      const entities = { ...state.entities };
-      delete entities[action.payload.id];
-      return {
+      return adapter.removeOne(action.payload.id, {
         ...state,
         loading: false,
-        loaded: true,
-        entities
-      };
+        loaded: true
+      });
     }
 
     case HeroActionTypes.heroError:
@@ -83,3 +63,5 @@ export function reducer(state = initialState, action: HeroActions): State {
       return state;
   }
 }
+
+export const heroEntitySelectors = adapter.getSelectors();
