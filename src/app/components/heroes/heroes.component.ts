@@ -26,14 +26,16 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit() {
     this.heroes$ = this.store.pipe(select(fromHeroSelectors.getHeroes));
-    this.store.dispatch(new fromHeroActions.HeroGet());
+    this.store.dispatch(new fromHeroActions.HeroGetHeroes());
   }
 
   add(name: string): void {
-    //   name = name.trim();
-    //   if (!name) {
-    //     return;
-    //   }
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.store.dispatch(new fromHeroActions.HeroAddHero({ name } as Hero));
+
     //   this.heroService.addHero({ name } as Hero).subscribe(hero => {
     //     this.heroes.push(hero);
     //   });

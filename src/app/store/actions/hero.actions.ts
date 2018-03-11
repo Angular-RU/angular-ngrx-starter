@@ -21,11 +21,11 @@ export class HeroGetHeroesSuccess implements Action {
 
 export class HeroAddHero implements Action {
   readonly type = HeroActionTypes.heroAddHero;
-  constructor(public payload: string) {}
+  constructor(public payload: Hero) {}
 }
 
 export class heroAddHeroSuccess implements Action {
-  readonly type = HeroActionTypes.heroAddHero;
+  readonly type = HeroActionTypes.heroAddHeroSuccess;
   constructor(public payload: Hero) {}
 }
 
@@ -34,4 +34,9 @@ export class HeroError implements Action {
   constructor(public payload: any) {}
 }
 
-export type HeroActions = HeroGetHeroes | HeroGetHeroesSuccess | HeroError;
+export type HeroActions =
+  | HeroGetHeroes
+  | HeroGetHeroesSuccess
+  | HeroAddHero
+  | heroAddHeroSuccess
+  | HeroError;
