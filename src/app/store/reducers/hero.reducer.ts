@@ -45,7 +45,7 @@ export function reducer(state = initialState, action: HeroActions): State {
       });
 
     case HeroActionTypes.heroGetHeroByIdSuccess:
-      return { ...state, selectedHeroId: action.payload.id };
+      return { ...state, selectedHeroId: action.payload.id, loading: false };
 
     case HeroActionTypes.heroAddHeroSuccess:
       return adapter.addOne(action.payload, {

@@ -1,4 +1,9 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -12,6 +17,7 @@ import { HeroService } from '../../services/hero.service';
 import * as fromHeroReducer from '../../store/reducers/hero.reducer';
 import * as fromHeroActions from '../../store/actions/hero.actions';
 import * as fromHeroSelectors from '../../store/selectors/hero.selectors';
+import * as fromRouterActions from '../../store/actions/router.actions';
 
 @Component({
   selector: 'app-hero-detail',
@@ -22,17 +28,14 @@ import * as fromHeroSelectors from '../../store/selectors/hero.selectors';
 export class HeroDetailComponent implements OnInit {
   hero$: Observable<Hero>;
 
-  constructor(
-    private store: Store<fromHeroReducer.State>,
-    private location: Location
-  ) {}
+  constructor(private store: Store<fromHeroReducer.State>) {}
 
   ngOnInit(): void {
     this.hero$ = this.store.pipe(select(fromHeroSelectors.getHeroById));
   }
 
   goBack(): void {
-    this.location.back();
+    this.store.dispatch(new fromRouterActions.Back());
   }
 
   save(hero: Hero): void {
