@@ -32,6 +32,16 @@ export const getSelectedHeroId = createSelector(
   (heroStore: fromHeroReducer.State) => heroStore.selectedHeroId
 );
 
+export const getSearchTerm = createSelector(
+  getHeroStore,
+  (heroStore: fromHeroReducer.State) => heroStore.searchTerm
+);
+
+export const getSearchHeroes = createSelector(
+  getHeroStore,
+  (heroStore: fromHeroReducer.State) => heroStore.searchHeroes
+);
+
 export const getHeroById = createSelector(
   getHeroEntities,
   getSelectedHeroId,

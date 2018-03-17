@@ -14,6 +14,8 @@ export interface State extends EntityState<Hero> {
   loading: boolean;
   error: any;
   selectedHeroId: number;
+  searchTerm: string;
+  searchHeroes: Hero[];
 }
 
 export const adapter: EntityAdapter<Hero> = createEntityAdapter<Hero>();
@@ -22,7 +24,9 @@ export const initialState: State = adapter.getInitialState({
   loaded: false,
   loading: false,
   selectedHeroId: null,
-  error: null
+  error: null,
+  searchTerm: '',
+  searchHeroes: null
 });
 
 export function reducer(state = initialState, action: HeroActions): State {
@@ -75,6 +79,27 @@ export function reducer(state = initialState, action: HeroActions): State {
         loaded: true
       });
     }
+
+    case HeroActionTypes.heroSearchHeroes:
+      return {
+        ...state,
+        loading: true,
+        searchTerm: action.payload
+      };
+
+    case HeroActionTypes.heroSearchHeroesSuccess:
+      return {
+        ...state,
+        searchHeroes: action.payload,
+        loading: false
+      };
+
+    case HeroActionTypes.heroSearchHeroesReset:
+      return {
+        ...state,
+        searchTerm: '',
+        searchHeroes: null
+      };
 
     case HeroActionTypes.heroError:
       return {
