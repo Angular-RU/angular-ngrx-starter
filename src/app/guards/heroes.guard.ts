@@ -12,8 +12,8 @@ import { switchMap, catchError, tap, filter, take } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
 import * as fromReducers from '../store/reducers';
-import * as fromHeroActions from '../store/actions/hero.actions';
 import * as fromSelectors from '../store/selectors';
+import { GetHeroes } from '../store/actions/hero.actions';
 
 @Injectable()
 export class HeroesGuard implements CanActivate {
@@ -33,7 +33,7 @@ export class HeroesGuard implements CanActivate {
     return this.store.select(fromSelectors.getHeroesLoaded).pipe(
       tap(loaded => {
         if (!loaded) {
-          this.store.dispatch(new fromHeroActions.GetHeroes());
+          this.store.dispatch(new GetHeroes());
         }
       }),
       filter(loaded => loaded),

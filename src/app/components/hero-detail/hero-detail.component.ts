@@ -17,8 +17,8 @@ import { HeroService } from '../../services/hero.service';
 import * as fromSelectors from '../../store/selectors';
 import * as fromReducer from '../../store/reducers';
 
-import * as fromHeroActions from '../../store/actions/hero.actions';
-import * as fromRouterActions from '../../store/actions/router.actions';
+import { Back } from '../../store/actions/router.actions';
+import { UpdateHero } from '../../store/actions/hero.actions';
 
 @Component({
   selector: 'app-hero-detail',
@@ -36,10 +36,10 @@ export class HeroDetailComponent implements OnInit {
   }
 
   goBack(): void {
-    this.store.dispatch(new fromRouterActions.Back());
+    this.store.dispatch(new Back());
   }
 
   save(hero: Hero): void {
-    this.store.dispatch(new fromHeroActions.UpdateHero(hero));
+    this.store.dispatch(new UpdateHero(hero));
   }
 }

@@ -7,6 +7,7 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
+import { RouterReducerState, routerReducer } from '@ngrx/router-store';
 
 import { environment } from '../../environments/environment';
 
@@ -14,10 +15,9 @@ import * as fromReducers from './reducers';
 
 import { HeroEffects } from './effects/hero.effects';
 import { RouterEffects } from './effects/router.effects';
-import { RouterReducerState, routerReducer } from '@ngrx/router-store';
+import { SearchEffects } from './effects/search.effects';
 
 import { RouterStateUrl } from './router';
-import { SearchEffects } from './effects/search.effects';
 
 export interface State {
   hero: fromReducers.hero.State;

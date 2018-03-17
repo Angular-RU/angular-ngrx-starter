@@ -7,8 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import { Hero } from '../../models/hero';
 
 import * as fromReducer from '../../store/reducers';
-import * as fromHeroActions from '../../store/actions/hero.actions';
 import * as fromSelectors from '../../store/selectors';
+import { DeleteHero, AddHero } from '../../store/actions/hero.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -30,10 +30,10 @@ export class HeroesComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.store.dispatch(new fromHeroActions.AddHero({ name } as Hero));
+    this.store.dispatch(new AddHero({ name } as Hero));
   }
 
   delete(hero: Hero): void {
-    this.store.dispatch(new fromHeroActions.DeleteHero(hero));
+    this.store.dispatch(new DeleteHero(hero));
   }
 }

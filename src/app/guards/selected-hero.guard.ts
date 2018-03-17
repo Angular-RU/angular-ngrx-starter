@@ -13,9 +13,9 @@ import { of } from 'rxjs/observable/of';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 
 import * as fromReducers from '../store/reducers';
-import * as fromHeroActions from '../store/actions/hero.actions';
 import * as fromSelectors from '../store/selectors';
 import { Hero } from '../models/hero';
+import { GetHeroes, GetHeroById } from '../store/actions/hero.actions';
 
 @Injectable()
 export class SelectedHeroGuard implements CanActivate {
@@ -42,11 +42,11 @@ export class SelectedHeroGuard implements CanActivate {
     return combineLatest(loaded$, selectedHeroId$).pipe(
       tap(([loaded, selectedHeroId]) => {
         if (!loaded) {
-          this.store.dispatch(new fromHeroActions.GetHeroes());
+          this.store.dispatch(new GetHeroes());
         }
 
         if (!selectedHeroId || selectedHeroId !== id) {
-          this.store.dispatch(new fromHeroActions.GetHeroById(id));
+          this.store.dispatch(new GetHeroById(id));
         }
       }),
       filter(

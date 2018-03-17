@@ -5,8 +5,6 @@ import { Store, select } from '@ngrx/store';
 import { Hero } from '../../models/hero';
 import { HeroService } from '../../services/hero.service';
 
-import * as fromHeroActions from '../../store/actions/hero.actions';
-
 import * as fromSelectors from '../../store/selectors';
 import * as fromReducers from '../../store/reducers';
 
