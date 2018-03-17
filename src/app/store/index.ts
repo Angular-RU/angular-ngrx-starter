@@ -9,6 +9,8 @@ import {
 } from '@ngrx/store';
 import { RouterReducerState, routerReducer } from '@ngrx/router-store';
 
+import { storeFreeze } from 'ngrx-store-freeze';
+
 import { environment } from '../../environments/environment';
 
 import * as fromReducers from './reducers';
@@ -34,5 +36,5 @@ export const reducers: ActionReducerMap<State> = {
 export const effects = [HeroEffects, SearchEffects, RouterEffects];
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
-  ? []
+  ? [storeFreeze]
   : [];
