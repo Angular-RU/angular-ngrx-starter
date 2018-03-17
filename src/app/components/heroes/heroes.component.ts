@@ -30,10 +30,10 @@ export class HeroesComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.store.dispatch(new fromHeroActions.HeroAddHero({ name } as Hero));
+    this.store.dispatch(new fromHeroActions.AddHero({ name } as Hero));
   }
 
   delete(hero: Hero): void {
-    this.store.dispatch(new fromHeroActions.HeroDeleteHero(hero));
+    this.store.dispatch(new fromHeroActions.DeleteHero(hero));
   }
 }

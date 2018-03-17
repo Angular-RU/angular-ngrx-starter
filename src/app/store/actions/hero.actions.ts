@@ -16,51 +16,51 @@ export enum HeroActionTypes {
   heroError = '[Hero] error'
 }
 
-export class HeroGetHeroes implements Action {
+export class GetHeroes implements Action {
   readonly type = HeroActionTypes.heroGetHeroes;
 }
 
-export class HeroGetHeroesSuccess implements Action {
+export class GetHeroesSuccess implements Action {
   readonly type = HeroActionTypes.heroGetHeroesSuccess;
   constructor(public payload: Hero[]) {}
 }
 
-export class HeroAddHero implements Action {
+export class AddHero implements Action {
   readonly type = HeroActionTypes.heroAddHero;
   constructor(public payload: Hero) {}
 }
 
-export class HeroAddHeroSuccess implements Action {
+export class AddHeroSuccess implements Action {
   readonly type = HeroActionTypes.heroAddHeroSuccess;
   constructor(public payload: Hero) {}
 }
 
-export class HeroGetHeroById implements Action {
+export class GetHeroById implements Action {
   readonly type = HeroActionTypes.heroGetHeroById;
   constructor(public payload: number) {}
 }
 
-export class HeroGetHeroByIdSuccess implements Action {
+export class GetHeroByIdSuccess implements Action {
   readonly type = HeroActionTypes.heroGetHeroByIdSuccess;
   constructor(public payload: Hero) {}
 }
 
-export class HeroUpdateHero implements Action {
+export class UpdateHero implements Action {
   readonly type = HeroActionTypes.heroUpdateHero;
   constructor(public payload: Hero) {}
 }
 
-export class HeroUpdateHeroSuccess implements Action {
+export class UpdateHeroSuccess implements Action {
   readonly type = HeroActionTypes.heroUpdateHeroSuccess;
   constructor(public payload: Hero) {}
 }
 
-export class HeroDeleteHero implements Action {
+export class DeleteHero implements Action {
   readonly type = HeroActionTypes.heroDeleteHero;
   constructor(public payload: Hero) {}
 }
 
-export class HeroDeleteHeroSuccess implements Action {
+export class DeleteHeroSuccess implements Action {
   readonly type = HeroActionTypes.heroDeleteHeroSuccess;
   constructor(public payload: Hero) {}
 }
@@ -71,14 +71,14 @@ export class HeroError implements Action {
 }
 
 export type HeroActions =
-  | HeroGetHeroes
-  | HeroGetHeroesSuccess
-  | HeroAddHero
-  | HeroAddHeroSuccess
-  | HeroGetHeroById
-  | HeroGetHeroByIdSuccess
-  | HeroUpdateHero
-  | HeroUpdateHeroSuccess
-  | HeroDeleteHero
-  | HeroDeleteHeroSuccess
+  | GetHeroes
+  | GetHeroesSuccess
+  | AddHero
+  | AddHeroSuccess
+  | GetHeroById
+  | GetHeroByIdSuccess
+  | UpdateHero
+  | UpdateHeroSuccess
+  | DeleteHero
+  | DeleteHeroSuccess
   | HeroError;

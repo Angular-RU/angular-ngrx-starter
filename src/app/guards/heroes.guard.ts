@@ -33,7 +33,7 @@ export class HeroesGuard implements CanActivate {
     return this.store.select(fromHeroSelectors.getHeroesLoaded).pipe(
       tap(loaded => {
         if (!loaded) {
-          this.store.dispatch(new fromHeroActions.HeroGetHeroes());
+          this.store.dispatch(new fromHeroActions.GetHeroes());
         }
       }),
       filter(loaded => loaded),

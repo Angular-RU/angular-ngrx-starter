@@ -39,6 +39,6 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(hero: Hero): void {
-    this.store.dispatch(new fromHeroActions.HeroUpdateHero(hero));
+    this.store.dispatch(new fromHeroActions.UpdateHero(hero));
   }
 }

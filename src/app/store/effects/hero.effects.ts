@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import {
   HeroActionTypes,
-  HeroGetHeroesSuccess,
+  GetHeroesSuccess,
   HeroError,
-  HeroAddHero,
-  HeroAddHeroSuccess,
-  HeroDeleteHeroSuccess,
-  HeroDeleteHero,
-  HeroGetHeroById,
-  HeroGetHeroByIdSuccess,
-  HeroUpdateHeroSuccess
+  AddHero,
+  AddHeroSuccess,
+  DeleteHeroSuccess,
+  DeleteHero,
+  GetHeroById,
+  GetHeroByIdSuccess,
+  UpdateHeroSuccess
 } from '../actions/hero.actions';
 import { HeroService } from '../../services/hero.service';
 import { switchMap, map, catchError, tap } from 'rxjs/operators';
@@ -27,7 +27,7 @@ export class HeroEffects {
     .ofType(HeroActionTypes.heroGetHeroes)
     .pipe(
       switchMap(() => this.heroService.getHeroes()),
-      map(heroes => new HeroGetHeroesSuccess(heroes)),
+      map(heroes => new GetHeroesSuccess(heroes)),
       catchError(error => of(new HeroError(error)))
     );
 
@@ -35,10 +35,10 @@ export class HeroEffects {
   getHeroById$ = this.actions$
     .ofType(HeroActionTypes.heroGetHeroById)
     .pipe(
-      switchMap((action: HeroGetHeroById) =>
+      switchMap((action: GetHeroById) =>
         this.heroService.getHero(action.payload)
       ),
-      map(hero => new HeroGetHeroByIdSuccess(hero)),
+      map(hero => new GetHeroByIdSuccess(hero)),
       catchError(error => of(new HeroError(error)))
     );
 
@@ -46,10 +46,10 @@ export class HeroEffects {
   addHero$ = this.actions$
     .ofType(HeroActionTypes.heroAddHero)
     .pipe(
-      switchMap((action: HeroAddHero) =>
+      switchMap((action: AddHero) =>
         this.heroService.addHero(action.payload)
       ),
-      map(hero => new HeroAddHeroSuccess(hero)),
+      map(hero => new AddHeroSuccess(hero)),
       catchError(error => of(new HeroError(error)))
     );
 
@@ -57,11 +57,11 @@ export class HeroEffects {
   updateHero$ = this.actions$
     .ofType(HeroActionTypes.heroUpdateHero)
     .pipe(
-      switchMap((action: HeroAddHero) =>
+      switchMap((action: AddHero) =>
         this.heroService
           .updateHero(action.payload)
           .pipe(
-            map(hero => new HeroUpdateHeroSuccess(action.payload)),
+            map(hero => new UpdateHeroSuccess(action.payload)),
             catchError(error => of(new HeroError(error)))
           )
       )
@@ -71,11 +71,11 @@ export class HeroEffects {
   deleteHero$ = this.actions$
     .ofType(HeroActionTypes.heroDeleteHero)
     .pipe(
-      switchMap((action: HeroDeleteHero) =>
+      switchMap((action: DeleteHero) =>
         this.heroService
           .deleteHero(action.payload)
           .pipe(
-            map(() => new HeroDeleteHeroSuccess(action.payload)),
+            map(() => new DeleteHeroSuccess(action.payload)),
             catchError(error => of(new HeroError(error)))
           )
       )

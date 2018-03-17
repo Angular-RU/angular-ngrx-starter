@@ -42,11 +42,11 @@ export class SelectedHeroGuard implements CanActivate {
     return combineLatest(loaded$, selectedHeroId$).pipe(
       tap(([loaded, selectedHeroId]) => {
         if (!loaded) {
-          this.store.dispatch(new fromHeroActions.HeroGetHeroes());
+          this.store.dispatch(new fromHeroActions.GetHeroes());
         }
 
         if (!selectedHeroId || selectedHeroId !== id) {
-          this.store.dispatch(new fromHeroActions.HeroGetHeroById(id));
+          this.store.dispatch(new fromHeroActions.GetHeroById(id));
         }
       }),
       filter(
