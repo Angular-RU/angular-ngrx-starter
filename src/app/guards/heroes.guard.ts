@@ -13,7 +13,7 @@ import { of } from 'rxjs/observable/of';
 
 import * as fromHeroReducer from '../store/reducers/hero.reducer';
 import * as fromHeroActions from '../store/actions/hero.actions';
-import * as fromHeroSelectors from '../store/selectors/hero.selectors';
+import * as fromSelectors from '../store/selectors';
 
 @Injectable()
 export class HeroesGuard implements CanActivate {
@@ -30,7 +30,7 @@ export class HeroesGuard implements CanActivate {
   }
 
   checkStore(): Observable<boolean> {
-    return this.store.select(fromHeroSelectors.getHeroesLoaded).pipe(
+    return this.store.select(fromSelectors.getHeroesLoaded).pipe(
       tap(loaded => {
         if (!loaded) {
           this.store.dispatch(new fromHeroActions.GetHeroes());

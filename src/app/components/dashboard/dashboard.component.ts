@@ -7,7 +7,8 @@ import { HeroService } from '../../services/hero.service';
 
 import * as fromHeroReducer from '../../store/reducers/hero.reducer';
 import * as fromHeroActions from '../../store/actions/hero.actions';
-import * as fromHeroSelectors from '../../store/selectors/hero.selectors';
+
+import * as fromSelectors from '../../store/selectors';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +22,6 @@ export class DashboardComponent implements OnInit {
   constructor(private store: Store<fromHeroReducer.State>) {}
 
   ngOnInit() {
-    this.topHeroes$ = this.store.pipe(select(fromHeroSelectors.getTopHeroes));
+    this.topHeroes$ = this.store.pipe(select(fromSelectors.getTopHeroes));
   }
 }

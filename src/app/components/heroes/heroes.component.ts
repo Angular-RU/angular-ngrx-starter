@@ -8,7 +8,7 @@ import { Hero } from '../../models/hero';
 
 import * as fromHeroReducer from '../../store/reducers/hero.reducer';
 import * as fromHeroActions from '../../store/actions/hero.actions';
-import * as fromHeroSelectors from '../../store/selectors/hero.selectors';
+import * as fromSelectors from '../../store/selectors';
 
 @Component({
   selector: 'app-heroes',
@@ -22,7 +22,7 @@ export class HeroesComponent implements OnInit {
   constructor(private store: Store<fromHeroReducer.State>) {}
 
   ngOnInit() {
-    this.heroes$ = this.store.pipe(select(fromHeroSelectors.getHeroes));
+    this.heroes$ = this.store.pipe(select(fromSelectors.getHeroes));
   }
 
   add(name: string): void {

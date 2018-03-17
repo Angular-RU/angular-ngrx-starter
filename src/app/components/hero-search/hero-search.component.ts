@@ -20,9 +20,9 @@ import {
 
 import { Hero } from '../../models/hero';
 
+import * as fromSelectors from '../../store/selectors';
+
 import * as fromStore from '../../store';
-import * as fromHeroSelectors from '../../store/selectors/hero.selectors';
-import * as fromSearchSelectorms from '../../store/selectors/search.selectors';
 
 import {
   SearchHeroes,
@@ -43,8 +43,8 @@ export class HeroSearchComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromStore.State>) {}
 
   ngOnInit(): void {
-    this.heroes$ = this.store.pipe(select(fromHeroSelectors.getSearchHeroes));
-    this.searchTerm$ = this.store.pipe(select(fromSearchSelectorms.getSearch));
+    this.heroes$ = this.store.pipe(select(fromSelectors.getSearchHeroes));
+    this.searchTerm$ = this.store.pipe(select(fromSelectors.getSearch));
   }
 
   ngOnDestroy(): void {
