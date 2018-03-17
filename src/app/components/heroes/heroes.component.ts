@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Hero } from '../../models/hero';
 
-import * as fromHeroReducer from '../../store/reducers/hero.reducer';
+import * as fromReducer from '../../store/reducers';
 import * as fromHeroActions from '../../store/actions/hero.actions';
 import * as fromSelectors from '../../store/selectors';
 
@@ -19,7 +19,7 @@ import * as fromSelectors from '../../store/selectors';
 export class HeroesComponent implements OnInit {
   heroes$: Observable<Hero[]>;
 
-  constructor(private store: Store<fromHeroReducer.State>) {}
+  constructor(private store: Store<fromReducer.hero.State>) {}
 
   ngOnInit() {
     this.heroes$ = this.store.pipe(select(fromSelectors.getHeroes));

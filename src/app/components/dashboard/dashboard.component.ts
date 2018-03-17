@@ -5,10 +5,10 @@ import { Store, select } from '@ngrx/store';
 import { Hero } from '../../models/hero';
 import { HeroService } from '../../services/hero.service';
 
-import * as fromHeroReducer from '../../store/reducers/hero.reducer';
 import * as fromHeroActions from '../../store/actions/hero.actions';
 
 import * as fromSelectors from '../../store/selectors';
+import * as fromReducers from '../../store/reducers';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +19,7 @@ import * as fromSelectors from '../../store/selectors';
 export class DashboardComponent implements OnInit {
   topHeroes$: Observable<Hero[]>;
 
-  constructor(private store: Store<fromHeroReducer.State>) {}
+  constructor(private store: Store<fromReducers.hero.State>) {}
 
   ngOnInit() {
     this.topHeroes$ = this.store.pipe(select(fromSelectors.getTopHeroes));

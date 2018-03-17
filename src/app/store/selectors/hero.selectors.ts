@@ -1,12 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import * as fromHeroReducer from '../reducers/hero.reducer';
+import * as fromReducers from '../reducers';
 
 export const getHeroStore = createFeatureSelector('hero');
 
 export const getHeroEntities = createSelector(
   getHeroStore,
-  fromHeroReducer.heroEntitySelectors.selectAll
+  fromReducers.hero.heroEntitySelectors.selectAll
 );
 
 export const getHeroes = createSelector(getHeroEntities, entities => {
@@ -19,22 +19,22 @@ export const getTopHeroes = createSelector(getHeroEntities, entities => {
 
 export const getHeroesLoaded = createSelector(
   getHeroStore,
-  (heroStore: fromHeroReducer.State) => heroStore.loaded
+  (heroStore: fromReducers.hero.State) => heroStore.loaded
 );
 
 export const getHeroesLoading = createSelector(
   getHeroStore,
-  (heroStore: fromHeroReducer.State) => heroStore.loading
+  (heroStore: fromReducers.hero.State) => heroStore.loading
 );
 
 export const getSelectedHeroId = createSelector(
   getHeroStore,
-  (heroStore: fromHeroReducer.State) => heroStore.selectedHeroId
+  (heroStore: fromReducers.hero.State) => heroStore.selectedHeroId
 );
 
 export const getSearchHeroes = createSelector(
   getHeroStore,
-  (heroStore: fromHeroReducer.State) => heroStore.searchHeroes
+  (heroStore: fromReducers.hero.State) => heroStore.searchHeroes
 );
 
 export const getHeroById = createSelector(
@@ -45,5 +45,5 @@ export const getHeroById = createSelector(
 
 export const getHeroesError = createSelector(
   getHeroStore,
-  (heroStore: fromHeroReducer.State) => heroStore.error
+  (heroStore: fromReducers.hero.State) => heroStore.error
 );

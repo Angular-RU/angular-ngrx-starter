@@ -15,8 +15,8 @@ import { Hero } from '../../models/hero';
 import { HeroService } from '../../services/hero.service';
 
 import * as fromSelectors from '../../store/selectors';
+import * as fromReducer from '../../store/reducers';
 
-import * as fromHeroReducer from '../../store/reducers/hero.reducer';
 import * as fromHeroActions from '../../store/actions/hero.actions';
 import * as fromRouterActions from '../../store/actions/router.actions';
 
@@ -29,7 +29,7 @@ import * as fromRouterActions from '../../store/actions/router.actions';
 export class HeroDetailComponent implements OnInit {
   hero$: Observable<Hero>;
 
-  constructor(private store: Store<fromHeroReducer.State>) {}
+  constructor(private store: Store<fromReducer.hero.State>) {}
 
   ngOnInit(): void {
     this.hero$ = this.store.pipe(select(fromSelectors.getHeroById));

@@ -1,10 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import * as fromSearchReducer from '../reducers/search.reducer';
+import * as fromReducers from '../reducers';
 
 export const getSearchStore = createFeatureSelector('search');
 
 export const getSearch = createSelector(
   getSearchStore,
-  (store: fromSearchReducer.State) => store.search
+  (store: fromReducers.search.State) => store.search
 );

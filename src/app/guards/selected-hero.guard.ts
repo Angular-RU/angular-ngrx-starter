@@ -12,14 +12,14 @@ import { switchMap, catchError, tap, filter, take, map } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 
-import * as fromHeroReducer from '../store/reducers/hero.reducer';
+import * as fromReducers from '../store/reducers';
 import * as fromHeroActions from '../store/actions/hero.actions';
 import * as fromSelectors from '../store/selectors';
 import { Hero } from '../models/hero';
 
 @Injectable()
 export class SelectedHeroGuard implements CanActivate {
-  constructor(private store: Store<fromHeroReducer.State>) {}
+  constructor(private store: Store<fromReducers.hero.State>) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,

@@ -10,8 +10,7 @@ import {
 
 import { environment } from '../../environments/environment';
 
-import * as fromHeroReducer from './reducers/hero.reducer';
-import * as fromSearchReducer from './reducers/search.reducer';
+import * as fromReducers from './reducers';
 
 import { HeroEffects } from './effects/hero.effects';
 import { RouterEffects } from './effects/router.effects';
@@ -21,14 +20,14 @@ import { RouterStateUrl } from './router';
 import { SearchEffects } from './effects/search.effects';
 
 export interface State {
-  hero: fromHeroReducer.State;
-  search: fromSearchReducer.State;
+  hero: fromReducers.hero.State;
+  search: fromReducers.search.State;
   router: RouterReducerState<RouterStateUrl>;
 }
 
 export const reducers: ActionReducerMap<State> = {
-  hero: fromHeroReducer.reducer,
-  search: fromSearchReducer.reducer,
+  hero: fromReducers.hero.reducer,
+  search: fromReducers.search.reducer,
   router: routerReducer
 };
 
