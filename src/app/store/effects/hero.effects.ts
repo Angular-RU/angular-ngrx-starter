@@ -79,7 +79,6 @@ export class HeroEffects {
   @Effect()
   searchHeroes$ = this.actions$.pipe(
     ofType(HeroActionTypes.heroSearchHeroes),
-    debounceTime(300),
     switchMap((action: SearchHeroes) =>
       this.heroService.searchHeroes(action.payload)
     ),
