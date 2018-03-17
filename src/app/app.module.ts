@@ -5,7 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import {
+  StoreRouterConnectingModule,
+  routerReducer,
+  RouterStateSerializer
+} from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -25,6 +29,7 @@ import { MessageService } from './services/message.service';
 
 import * as fromStore from './store';
 import { environment } from '../environments/environment';
+import { CustomRouterStateSerializer } from './store/router';
 
 @NgModule({
   imports: [
@@ -34,7 +39,9 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),
-    StoreRouterConnectingModule,
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router' // name of reducer key
+    }),
     !environment.production
       ? StoreDevtoolsModule.instrument({ maxAge: 50 })
       : [],
@@ -54,7 +61,14 @@ import { environment } from '../environments/environment';
     MessagesComponent,
     HeroSearchComponent
   ],
-  providers: [HeroService, MessageService],
+  providers: [
+    HeroService,
+    MessageService,
+    {
+      provide: RouterStateSerializer,
+      useClass: CustomRouterStateSerializer
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
