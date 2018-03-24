@@ -39,7 +39,7 @@ export class HeroDetailComponent implements OnInit {
     this.store.dispatch(new Back());
   }
 
-  save(hero: Hero): void {
-    this.store.dispatch(new UpdateHero(hero));
+  save(hero: Hero, heroName: string): void {
+    this.store.dispatch(new UpdateHero({ ...hero, name: heroName }));
   }
 }
