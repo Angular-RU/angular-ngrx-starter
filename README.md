@@ -1,4 +1,6 @@
-# angular-ngrx-starter
+## Angular-ngrx-starter
+
+Demo: https://stackblitz.com/github/Angular-RU/angular-ngrx-starter
 
 ## Состав [@ngrx/platform](https://github.com/ngrx/platform) :
 
