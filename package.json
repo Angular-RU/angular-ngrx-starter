@@ -9,6 +9,7 @@
     "start": "ng serve",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e"
   },
@@ -42,11 +43,8 @@
   "devDependencies": {
     "@angular/cli": "1.7.4",
     "@ngrx/schematics": "^5.2.0",
-    "@types/jasmine": "~2.8.6",
-    "@types/jasminewd2": "^2.0.3",
+    "@types/jest": "^22.2.3",
     "@types/node": "^9.6.2",
-    "jasmine-core": "~3.1.0",
-    "jasmine-spec-reporter": "^4.2.1",
     "jest": "^22.4.3",
     "jest-preset-angular": "^5.2.2",
     "lodash": "^4.17.5",

@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`hero reducer State Changes should add hero 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should add hero success 1`] = `
+Object {
+  "entities": Object {
+    "2": Object {
+      "id": 2,
+      "name": "hero2",
+    },
+  },
+  "error": null,
+  "ids": Array [
+    2,
+  ],
+  "loaded": true,
+  "loading": false,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should delete hero 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should delete hero success 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "id": 1,
+      "name": "hero1",
+    },
+  },
+  "error": null,
+  "ids": Array [
+    1,
+  ],
+  "loaded": true,
+  "loading": false,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should get hero by id 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should get hero by id success 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": 2,
+}
+`;
+
+exports[`hero reducer State Changes should get heroes 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should get heroes success 1`] = `
+Object {
+  "entities": Object {
+    "0": Object {
+      "id": 0,
+      "name": "hero0",
+    },
+    "1": Object {
+      "id": 1,
+      "name": "hero1",
+    },
+  },
+  "error": null,
+  "ids": Array [
+    0,
+    1,
+  ],
+  "loaded": true,
+  "loading": false,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should hero error 1`] = `
+Object {
+  "entities": Object {},
+  "error": "error",
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should search heroes 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should search heroes reset 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should search heroes success 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+  "searchHeroes": Array [
+    Object {
+      "id": 0,
+      "name": "hero0",
+    },
+    Object {
+      "id": 1,
+      "name": "hero1",
+    },
+  ],
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should update hero 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;
+
+exports[`hero reducer State Changes should update hero success 1`] = `
+Object {
+  "entities": Object {},
+  "error": null,
+  "ids": Array [],
+  "loaded": true,
+  "loading": false,
+  "searchHeroes": null,
+  "searchTerm": "",
+  "selectedHeroId": null,
+}
+`;

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`search reducer State Changes should reset search 1`] = `
+Object {
+  "search": "",
+}
+`;
+
+exports[`search reducer State Changes should update search 1`] = `
+Object {
+  "search": "new search",
+}
+`;
