@@ -1,25 +1,45 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { HeroSearchComponent } from './hero-search.component';
 
 describe('HeroSearchComponent', () => {
-  let component: HeroSearchComponent;
+  let comp: HeroSearchComponent;
   let fixture: ComponentFixture<HeroSearchComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HeroSearchComponent ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
+    const storeStub = {
+      pipe: () => ({}),
+      dispatch: () => ({})
+    };
+    TestBed.configureTestingModule({
+      declarations: [HeroSearchComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [{ provide: Store, useValue: storeStub }]
+    });
     fixture = TestBed.createComponent(HeroSearchComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    comp = fixture.componentInstance;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('can load instance', () => {
+    expect(comp).toBeTruthy();
+  });
+
+  describe('ngOnInit', () => {
+    it('makes expected calls', () => {
+      const storeStub: Store<any> = fixture.debugElement.injector.get(Store);
+      spyOn(storeStub, 'pipe');
+      comp.ngOnInit();
+      expect(storeStub.pipe).toHaveBeenCalled();
+    });
+  });
+
+  describe('ngOnDestroy', () => {
+    it('makes expected calls', () => {
+      const storeStub: Store<any> = fixture.debugElement.injector.get(Store);
+      spyOn(storeStub, 'dispatch');
+      comp.ngOnDestroy();
+      expect(storeStub.dispatch).toHaveBeenCalled();
+    });
   });
 });

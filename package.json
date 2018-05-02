@@ -7,7 +7,8 @@
     "ng": "ng",
     "build": "ng build --prod",
     "start": "ng serve",
-    "test": "ng test",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e"
   },
@@ -46,19 +47,25 @@
     "@types/node": "^9.6.2",
     "jasmine-core": "~3.1.0",
     "jasmine-spec-reporter": "^4.2.1",
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-cli": "^1.0.1",
-    "karma-coverage-istanbul-reporter": "^1.4.2",
-    "karma-jasmine": "^1.1.1",
-    "karma-jasmine-html-reporter": "^1.0.0",
-    "karma-phantomjs-launcher": "^1.0.4",
+    "jest": "^22.4.3",
+    "jest-preset-angular": "^5.2.2",
     "lodash": "^4.17.5",
     "phantomjs-prebuilt": "^2.1.16",
     "protractor": "~5.3.1",
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
     "typescript": "2.6.2"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupTestFrameworkScriptFile": "./jest-config/setup.ts",
+    "moduleNameMapper": {
+      "@appComponents/(.*)": "<rootDir>/src/app/components/$1",
+      "@appServices/(.*)": "<rootDir>/src/app/services/$1",
+      "@appStore/(.*)": "<rootDir>/src/app/store/$1",
+      "@appGuards/(.*)": "<rootDir>/src/app/guards/$1",
+      "@appModels/(.*)": "<rootDir>/src/app/models/$1"
+    }
   },
   "repository": {}
 }

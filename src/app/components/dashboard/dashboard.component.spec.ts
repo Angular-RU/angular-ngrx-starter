@@ -1,25 +1,35 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
-  let component: DashboardComponent;
+  let comp: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
+    const storeStub = {
+      pipe: () => ({})
+    };
+    TestBed.configureTestingModule({
+      declarations: [DashboardComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [{ provide: Store, useValue: storeStub }]
+    });
     fixture = TestBed.createComponent(DashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    comp = fixture.componentInstance;
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
+  it('can load instance', () => {
+    expect(comp).toBeTruthy();
+  });
+
+  describe('ngOnInit', () => {
+    it('makes expected calls', () => {
+      const storeStub: Store<any> = fixture.debugElement.injector.get(Store);
+      spyOn(storeStub, 'pipe');
+      comp.ngOnInit();
+      expect(storeStub.pipe).toHaveBeenCalled();
+    });
   });
 });
