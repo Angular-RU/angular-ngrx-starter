@@ -12,10 +12,10 @@ import { switchMap, catchError, tap, filter, take, map } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 
-import * as fromReducers from '../store/reducers';
-import * as fromSelectors from '../store/selectors';
-import { Hero } from '../models/hero';
-import { GetHeroes, GetHeroById } from '../store/actions/hero.actions';
+import * as fromReducers from '@appStore/reducers';
+import * as fromSelectors from '@appStore/selectors';
+import { GetHeroes, GetHeroById } from '@appStore/actions/hero.actions';
+import { Hero } from '@appModels/hero';
 
 @Injectable()
 export class SelectedHeroGuard implements CanActivate {

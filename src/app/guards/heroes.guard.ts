@@ -11,9 +11,9 @@ import { Observable } from 'rxjs/Observable';
 import { switchMap, catchError, tap, filter, take } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
-import * as fromReducers from '../store/reducers';
-import * as fromSelectors from '../store/selectors';
-import { GetHeroes } from '../store/actions/hero.actions';
+import * as fromReducers from '@appStore/reducers';
+import * as fromSelectors from '@appStore/selectors';
+import { GetHeroes } from '@appStore/actions/hero.actions';
 
 @Injectable()
 export class HeroesGuard implements CanActivate {
