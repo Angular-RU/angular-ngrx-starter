@@ -8,12 +8,15 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ]
+    "baseUrl": "./src",
+    "paths": {
+      "@appComponents/*": ["app/components/*"],
+      "@appServices/*": ["app/services/*"],
+      "@appStore/*": ["app/store/*"],
+      "@appGuards/*": ["app/guards/*"],
+      "@appModels/*": ["app/models/*"]
+    },
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"]
   }
 }

@@ -13,23 +13,24 @@ import {
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service';
+import { InMemoryDataService } from '@appServices/in-memory-data.service';
+
+import { environment } from 'environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
-import { HeroesComponent } from './components/heroes/heroes.component';
-import { HeroSearchComponent } from './components/hero-search/hero-search.component';
-import { MessagesComponent } from './components/messages/messages.component';
+import { DashboardComponent } from '@appComponents/dashboard/dashboard.component';
+import { HeroesComponent } from '@appComponents/heroes/heroes.component';
+import { HeroDetailComponent } from '@appComponents/hero-detail/hero-detail.component';
+import { MessagesComponent } from '@appComponents/messages/messages.component';
+import { HeroSearchComponent } from '@appComponents/hero-search/hero-search.component';
 
-import { HeroService } from './services/hero.service';
-import { MessageService } from './services/message.service';
+import { HeroService } from '@appServices/hero.service';
+import { MessageService } from '@appServices/message.service';
 
-import * as fromStore from './store';
-import { environment } from '../environments/environment';
-import { CustomRouterStateSerializer } from './store/router';
+import * as fromStore from '@appStore/index';
+import { CustomRouterStateSerializer } from '@appStore/router';
 
 @NgModule({
   imports: [
