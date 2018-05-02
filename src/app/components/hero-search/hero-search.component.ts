@@ -18,17 +18,17 @@ import {
   first
 } from 'rxjs/operators';
 
-import { Hero } from '../../models/hero';
+import { Hero } from '@appModels/hero';
 
-import * as fromSelectors from '../../store/selectors';
+import * as fromSelectors from '@appStore/selectors';
 
-import * as fromStore from '../../store';
+import * as fromStore from '@appStore/index';
 
 import {
   SearchHeroes,
   SearchHeroesReset
-} from '../../store/actions/hero.actions';
-import { SearchReset, Search } from '../../store/actions/search.actions';
+} from '@appStore/actions/hero.actions';
+import { SearchReset, Search } from '@appStore/actions/search.actions';
 
 @Component({
   selector: 'app-hero-search',

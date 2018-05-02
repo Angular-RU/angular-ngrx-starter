@@ -4,11 +4,11 @@ import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Hero } from '../../models/hero';
+import { Hero } from '@appModels/hero';
 
-import * as fromReducer from '../../store/reducers';
-import * as fromSelectors from '../../store/selectors';
-import { DeleteHero, AddHero } from '../../store/actions/hero.actions';
+import * as fromReducer from '@appStore/reducers';
+import * as fromSelectors from '@appStore/selectors';
+import { DeleteHero, AddHero } from '@appStore/actions/hero.actions';
 
 @Component({
   selector: 'app-heroes',

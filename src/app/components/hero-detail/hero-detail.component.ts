@@ -11,14 +11,14 @@ import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Hero } from '../../models/hero';
-import { HeroService } from '../../services/hero.service';
+import { Hero } from '@appModels/hero';
+import { HeroService } from '@appServices/hero.service';
 
-import * as fromSelectors from '../../store/selectors';
-import * as fromReducer from '../../store/reducers';
+import * as fromSelectors from '@appStore/selectors';
+import * as fromReducer from '@appStore/reducers';
 
-import { Back } from '../../store/actions/router.actions';
-import { UpdateHero } from '../../store/actions/hero.actions';
+import { Back } from '@appStore/actions/router.actions';
+import { UpdateHero } from '@appStore/actions/hero.actions';
 
 @Component({
   selector: 'app-hero-detail',

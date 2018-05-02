@@ -2,11 +2,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 
-import { Hero } from '../../models/hero';
-import { HeroService } from '../../services/hero.service';
+import { Hero } from '@appModels/hero';
+import { HeroService } from '@appServices/hero.service';
 
-import * as fromSelectors from '../../store/selectors';
-import * as fromReducers from '../../store/reducers';
+import * as fromSelectors from '@appStore/selectors';
+import * as fromReducers from '@appStore/reducers';
 
 @Component({
   selector: 'app-dashboard',
