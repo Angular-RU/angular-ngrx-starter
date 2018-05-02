@@ -15,11 +15,11 @@ import { environment } from '../../environments/environment';
 
 import * as fromReducers from './reducers';
 
-import { HeroEffects } from './effects/hero.effects';
-import { RouterEffects } from './effects/router.effects';
-import { SearchEffects } from './effects/search.effects';
+import { HeroEffects } from '@appStore/effects/hero.effects';
+import { RouterEffects } from '@appStore/effects/router.effects';
+import { SearchEffects } from '@appStore/effects/search.effects';
 
-import { RouterStateUrl } from './router';
+import { RouterStateUrl } from '@appStore/router';
 
 export interface State {
   hero: fromReducers.hero.State;

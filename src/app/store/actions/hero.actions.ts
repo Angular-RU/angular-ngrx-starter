@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Hero } from '../../models/hero';
+import { Hero } from '@appModels/hero';
 
 export enum HeroActionTypes {
   heroGetHeroes = '[Hero] get',

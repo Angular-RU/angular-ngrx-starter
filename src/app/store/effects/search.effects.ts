@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { SearchActionTypes, Search } from '../actions/search.actions';
 import { map, debounceTime } from 'rxjs/operators';
-import { SearchHeroes, SearchHeroesReset } from '../actions/hero.actions';
+
+import { SearchActionTypes, Search } from '@appStore/actions/search.actions';
+import {
+  SearchHeroes,
+  SearchHeroesReset
+} from '@appStore/actions/hero.actions';
 
 @Injectable()
 export class SearchEffects {

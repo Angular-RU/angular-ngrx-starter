@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import * as fromReducers from '../reducers';
+import * as fromReducers from '@appStore/reducers';
 
 export const getHeroStore = createFeatureSelector('hero');
 

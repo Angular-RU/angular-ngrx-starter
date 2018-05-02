@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
+
+import { switchMap, map, catchError, tap, debounceTime } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+
 import {
   HeroActionTypes,
   GetHeroesSuccess,
@@ -13,12 +17,10 @@ import {
   UpdateHeroSuccess,
   SearchHeroes,
   SearchHeroesSuccess
-} from '../actions/hero.actions';
-import { HeroService } from '../../services/hero.service';
-import { switchMap, map, catchError, tap, debounceTime } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+} from '@appStore/actions/hero.actions';
+import { HeroService } from '@appServices/hero.service';
 
-import * as fromRouterActions from '../actions/router.actions';
+import * as fromRouterActions from '@appStore/actions/router.actions';
 
 @Injectable()
 export class HeroEffects {

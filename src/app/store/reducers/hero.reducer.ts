@@ -6,8 +6,8 @@ import {
   Update
 } from '@ngrx/entity';
 
-import { Hero } from '../../models/hero';
-import { HeroActions, HeroActionTypes } from '../actions/hero.actions';
+import { Hero } from '@appModels/hero';
+import { HeroActions, HeroActionTypes } from '@appStore/actions/hero.actions';
 
 export interface State extends EntityState<Hero> {
   loaded: boolean;

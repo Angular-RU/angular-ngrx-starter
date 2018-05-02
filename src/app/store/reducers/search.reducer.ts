@@ -1,5 +1,8 @@
 import { Action } from '@ngrx/store';
-import { SearchActionTypes, SearchActions } from '../actions/search.actions';
+import {
+  SearchActionTypes,
+  SearchActions
+} from '@appStore/actions/search.actions';
 
 export interface State {
   search: string;
