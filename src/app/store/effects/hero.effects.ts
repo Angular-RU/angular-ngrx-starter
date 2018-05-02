@@ -29,27 +29,40 @@ export class HeroEffects {
   @Effect()
   loadHeroes$ = this.actions$.pipe(
     ofType(HeroActionTypes.heroGetHeroes),
-    switchMap(() => this.heroService.getHeroes()),
-    map(heroes => new GetHeroesSuccess(heroes)),
-    catchError(error => of(new HeroError(error)))
+    switchMap(() =>
+      this.heroService
+        .getHeroes()
+        .pipe(
+          map(heroes => new GetHeroesSuccess(heroes)),
+          catchError(error => of(new HeroError(error)))
+        )
+    )
   );
 
   @Effect()
   getHeroById$ = this.actions$.pipe(
     ofType(HeroActionTypes.heroGetHeroById),
     switchMap((action: GetHeroById) =>
-      this.heroService.getHero(action.payload)
-    ),
-    map(hero => new GetHeroByIdSuccess(hero)),
-    catchError(error => of(new HeroError(error)))
+      this.heroService
+        .getHero(action.payload)
+        .pipe(
+          map(hero => new GetHeroByIdSuccess(hero)),
+          catchError(error => of(new HeroError(error)))
+        )
+    )
   );
 
   @Effect()
   addHero$ = this.actions$.pipe(
     ofType(HeroActionTypes.heroAddHero),
-    switchMap((action: AddHero) => this.heroService.addHero(action.payload)),
-    map(hero => new AddHeroSuccess(hero)),
-    catchError(error => of(new HeroError(error)))
+    switchMap((action: AddHero) =>
+      this.heroService
+        .addHero(action.payload)
+        .pipe(
+          map(hero => new AddHeroSuccess(hero)),
+          catchError(error => of(new HeroError(error)))
+        )
+    )
   );
 
   @Effect()
@@ -82,10 +95,13 @@ export class HeroEffects {
   searchHeroes$ = this.actions$.pipe(
     ofType(HeroActionTypes.heroSearchHeroes),
     switchMap((action: SearchHeroes) =>
-      this.heroService.searchHeroes(action.payload)
-    ),
-    map(heroes => new SearchHeroesSuccess(heroes)),
-    catchError(error => of(new HeroError(error)))
+      this.heroService
+        .searchHeroes(action.payload)
+        .pipe(
+          map(heroes => new SearchHeroesSuccess(heroes)),
+          catchError(error => of(new HeroError(error)))
+        )
+    )
   );
 
   @Effect()
