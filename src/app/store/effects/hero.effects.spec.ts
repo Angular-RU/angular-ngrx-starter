@@ -9,12 +9,17 @@ import {
   GetHeroesSuccess,
   HeroError,
   UpdateHero,
-  UpdateHeroSuccess
+  UpdateHeroSuccess,
+  DeleteHero,
+  DeleteHeroSuccess,
+  SearchHeroes,
+  SearchHeroesSuccess
 } from '@appStore/actions/hero.actions';
 import { Actions } from '@ngrx/effects';
 import { cold, hot } from 'jasmine-marbles';
 import { TestActions, getActions } from '../../../../jest-config/test-utils';
 import { HeroEffects } from './hero.effects';
+import { Go } from '@appStore/actions/router.actions';
 
 describe('HeroEffects', () => {
   let effects: HeroEffects;
@@ -150,6 +155,78 @@ describe('HeroEffects', () => {
       heroService.updateHero = jest.fn(() => response);
 
       expect(effects.updateHero$).toBeObservable(expected);
+    });
+  });
+
+  describe('delete hero', () => {
+    it('should delete hero', () => {
+      const hero = { id: 7, name: 'delete hero' };
+      const action = new DeleteHero(hero);
+      const result = new DeleteHeroSuccess(hero);
+
+      actions$.stream = hot('-a---', { a: action });
+      const response = cold('-a|', { a: hero });
+      const expected = cold('--b', { b: result });
+      heroService.deleteHero = jest.fn(() => response);
+
+      expect(effects.deleteHero$).toBeObservable(expected);
+    });
+
+    it('should delete hero error', () => {
+      const hero = { id: 7, name: 'delete hero' };
+      const error = 'error message';
+      const action = new DeleteHero(hero);
+      const result = new HeroError(error);
+
+      actions$.stream = hot('-a---', { a: action });
+      const response = cold('-#', {}, error);
+      const expected = cold('--b', { b: result });
+      heroService.deleteHero = jest.fn(() => response);
+
+      expect(effects.deleteHero$).toBeObservable(expected);
+    });
+  });
+
+  describe('search heroes', () => {
+    it('should search heroes success', () => {
+      const heroes = [
+        { id: 25, name: 'search hero' },
+        { id: 32, name: 'search hero 2' }
+      ];
+      const action = new SearchHeroes('search');
+      const result = new SearchHeroesSuccess(heroes);
+
+      actions$.stream = hot('-a---', { a: action });
+      const response = cold('-a|', { a: heroes });
+      const expected = cold('--b', { b: result });
+      heroService.searchHeroes = jest.fn(() => response);
+
+      expect(effects.searchHeroes$).toBeObservable(expected);
+    });
+
+    it('should search heroes error', () => {
+      const error = 'error message';
+      const action = new SearchHeroes('search');
+      const result = new HeroError(error);
+
+      actions$.stream = hot('-a---', { a: action });
+      const response = cold('-#', {}, error);
+      const expected = cold('--b', { b: result });
+      heroService.searchHeroes = jest.fn(() => response);
+
+      expect(effects.searchHeroes$).toBeObservable(expected);
+    });
+  });
+
+  describe('update hero success', () => {
+    it('should navigate to heroes', () => {
+      const action = new UpdateHeroSuccess({ id: 555, name: 'update hero' });
+      const result = new Go({ path: ['/heroes'] });
+
+      actions$.stream = hot('-a---', { a: action });
+      const expected = cold('-b', { b: result });
+
+      expect(effects.updateHeroSuccess$).toBeObservable(expected);
     });
   });
 });
