@@ -43,7 +43,6 @@
   "devDependencies": {
     "@angular/cli": "1.7.4",
     "@ngrx/schematics": "^5.2.0",
-    "@types/jasmine": "^2.8.6",
     "@types/jest": "^22.2.3",
     "@types/node": "^9.6.2",
     "jasmine-marbles": "^0.2.0",
