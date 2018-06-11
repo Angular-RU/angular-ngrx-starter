@@ -7,10 +7,8 @@ import {
 
 import { Store } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  of ,  combineLatest } from 'rxjs';
 import { switchMap, catchError, tap, filter, take, map } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
-import { combineLatest } from 'rxjs/observable/combineLatest';
 
 import * as fromReducers from '@appStore/reducers';
 import * as fromSelectors from '@appStore/selectors';

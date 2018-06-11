@@ -7,9 +7,8 @@ import {
 
 import { Store } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  of } from 'rxjs';
 import { switchMap, catchError, tap, filter, take } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 
 import * as fromReducers from '@appStore/reducers';
 import * as fromSelectors from '@appStore/selectors';
