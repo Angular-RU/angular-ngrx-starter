@@ -68,6 +68,7 @@
     ],
     "setupTestFrameworkScriptFile": "./jest-config/setup.ts",
     "moduleNameMapper": {
+      "@appContainers/(.*)": "<rootDir>/src/app/containers/$1",
       "@appComponents/(.*)": "<rootDir>/src/app/components/$1",
       "@appServices/(.*)": "<rootDir>/src/app/services/$1",
       "@appStore/(.*)": "<rootDir>/src/app/store/$1",

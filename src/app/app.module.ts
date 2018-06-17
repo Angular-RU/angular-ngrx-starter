@@ -20,9 +20,9 @@ import { environment } from 'environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from '@appComponents/dashboard/dashboard.component';
-import { HeroesComponent } from '@appComponents/heroes/heroes.component';
-import { HeroDetailComponent } from '@appComponents/hero-detail/hero-detail.component';
+import { DashboardComponent } from '@appContainers/dashboard/dashboard.component';
+import { HeroesComponent } from '@appContainers/heroes/heroes.component';
+import { HeroDetailComponent } from '@appContainers/hero-detail/hero-detail.component';
 import { MessagesComponent } from '@appComponents/messages/messages.component';
 import { HeroSearchComponent } from '@appComponents/hero-search/hero-search.component';
 

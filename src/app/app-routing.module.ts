@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from '@appComponents/dashboard/dashboard.component';
-import { HeroesComponent } from '@appComponents/heroes/heroes.component';
-import { HeroDetailComponent } from '@appComponents/hero-detail/hero-detail.component';
+import { DashboardComponent } from '@appContainers/dashboard/dashboard.component';
+import { HeroesComponent } from '@appContainers/heroes/heroes.component';
+import { HeroDetailComponent } from '@appContainers/hero-detail/hero-detail.component';
 import { HeroesGuard } from '@appGuards/heroes.guard';
 import { SelectedHeroGuard } from '@appGuards/selected-hero.guard';
 

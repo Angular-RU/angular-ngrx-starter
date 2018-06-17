@@ -10,6 +10,7 @@
     "target": "es5",
     "baseUrl": "./src",
     "paths": {
+      "@appContainers/*": ["app/containers/*"],
       "@appComponents/*": ["app/components/*"],
       "@appServices/*": ["app/services/*"],
       "@appStore/*": ["app/store/*"],
