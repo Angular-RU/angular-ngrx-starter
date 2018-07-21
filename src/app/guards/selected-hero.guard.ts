@@ -7,17 +7,13 @@ import {
 
 import { Store } from '@ngrx/store';
 
-import { Observable ,  of ,  combineLatest } from 'rxjs';
+import { Observable, of, combineLatest } from 'rxjs';
 import { switchMap, catchError, tap, filter, take, map } from 'rxjs/operators';
 
-import * as fromReducers from '@appStore/reducers';
-import * as fromSelectors from '@appStore/selectors';
-import { GetHeroes, GetHeroById } from '@appStore/actions/hero.actions';
-import { Hero } from '@appModels/hero';
 
 @Injectable()
 export class SelectedHeroGuard implements CanActivate {
-  constructor(private store: Store<fromReducers.hero.State>) {}
+  constructor() {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -30,29 +26,30 @@ export class SelectedHeroGuard implements CanActivate {
   }
 
   checkStore(id: number): Observable<boolean> {
-    const loaded$: Observable<boolean> = this.store.select(
-      fromSelectors.getHeroesLoaded
-    );
-    const selectedHeroId$: Observable<number> = this.store.select(
-      fromSelectors.getSelectedHeroId
-    );
+    return of(true);
+    // const loaded$: Observable<boolean> = this.store.select(
+    //   fromSelectors.getHeroesLoaded
+    // );
+    // const selectedHeroId$: Observable<number> = this.store.select(
+    //   fromSelectors.getSelectedHeroId
+    // );
 
-    return combineLatest(loaded$, selectedHeroId$).pipe(
-      tap(([loaded, selectedHeroId]) => {
-        if (!loaded) {
-          this.store.dispatch(new GetHeroes());
-        }
+    // return combineLatest(loaded$, selectedHeroId$).pipe(
+    //   tap(([loaded, selectedHeroId]) => {
+    //     if (!loaded) {
+    //       this.store.dispatch(new GetHeroes());
+    //     }
 
-        if (!selectedHeroId || selectedHeroId !== id) {
-          this.store.dispatch(new GetHeroById(id));
-        }
-      }),
-      filter(
-        ([loaded, selectedHeroId]) =>
-          loaded && selectedHeroId && selectedHeroId === id
-      ),
-      map(() => true),
-      take(1)
-    );
+    //     if (!selectedHeroId || selectedHeroId !== id) {
+    //       this.store.dispatch(new GetHeroById(id));
+    //     }
+    //   }),
+    //   filter(
+    //     ([loaded, selectedHeroId]) =>
+    //       loaded && selectedHeroId && selectedHeroId === id
+    //   ),
+    //   map(() => true),
+    //   take(1)
+    // );
   }
 }

@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EntityMetadataMap, NgrxDataModule } from 'ngrx-data';
+import { HeroEntity } from './hero.entity';
 
 export const entityMetadata: EntityMetadataMap = {
-  Hero: {
-    entityName: 'Hero'
-  }
+  Hero: HeroEntity
 };
 
-export const pluralNames = { Hero: 'Heroes' };
+export const pluralNames = { Hero: 'hero' };
 
 @NgModule({
   imports: [

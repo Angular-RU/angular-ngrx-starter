@@ -6,8 +6,6 @@ import { Observable } from 'rxjs';
 
 import { Hero } from '@appModels/hero';
 
-import * as fromReducer from '@appStore/reducers';
-import * as fromSelectors from '@appStore/selectors';
 import { DeleteHero, AddHero } from '@appStore/actions/hero.actions';
 
 @Component({
@@ -19,10 +17,10 @@ import { DeleteHero, AddHero } from '@appStore/actions/hero.actions';
 export class HeroesComponent implements OnInit {
   heroes$: Observable<Hero[]>;
 
-  constructor(private store: Store<fromReducer.hero.State>) {}
+  constructor() {}
 
   ngOnInit() {
-    this.heroes$ = this.store.pipe(select(fromSelectors.getHeroes));
+    // this.heroes$ = this.store.pipe(select(fromSelectors.getHeroes));
   }
 
   add(name: string): void {
@@ -30,10 +28,10 @@ export class HeroesComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.store.dispatch(new AddHero({ name } as Hero));
+    // this.store.dispatch(new AddHero({ name } as Hero));
   }
 
   delete(hero: Hero): void {
-    this.store.dispatch(new DeleteHero(hero));
+    // this.store.dispatch(new DeleteHero(hero));
   }
 }

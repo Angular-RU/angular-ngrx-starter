@@ -31,12 +31,9 @@ import { MessageService } from '@appServices/message.service';
 import * as fromStore from '@appStore/index';
 import { CustomRouterStateSerializer } from '@appStore/router';
 
-import { NgrxDataModule } from 'ngrx-data';
 import {
-  entityMetadata,
-  pluralNames
+  EntityStoreModule
 } from './entity-store/entity-store.module';
-import { HeroService } from '@appServices/hero.service';
 
 @NgModule({
   imports: [
@@ -46,10 +43,7 @@ import { HeroService } from '@appServices/hero.service';
     HttpClientModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),
-    NgrxDataModule.forRoot({
-      entityMetadata,
-      pluralNames
-    }),
+    EntityStoreModule,
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router' // name of reducer key
     }),
