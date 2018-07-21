@@ -22,6 +22,5 @@ export class DashboardComponent implements OnInit {
   
   ngOnInit() {
     this.heroes$ = this.heroesService.entities$.pipe(map(e => e.slice(0, 4)));
-    this.heroesService.getAll();
   }
 }
