@@ -13,10 +13,16 @@ import { switchMap, catchError, tap, filter, take } from 'rxjs/operators';
 import * as fromReducers from '@appStore/reducers';
 import * as fromSelectors from '@appStore/selectors';
 import { GetHeroes } from '@appStore/actions/hero.actions';
+import { EntityServices, EntityCollectionService } from 'ngrx-data';
+import { Hero } from '@appModels/hero';
 
 @Injectable()
 export class HeroesGuard implements CanActivate {
-  constructor() {}
+  heroesService: EntityCollectionService<Hero>;
+
+  constructor(entityServices: EntityServices) {
+    this.heroesService = entityServices.getEntityCollectionService('Hero');
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -29,15 +35,14 @@ export class HeroesGuard implements CanActivate {
   }
 
   checkStore(): Observable<boolean> {
-    return of(true);
-    // return this.store.select(fromSelectors.getHeroesLoaded).pipe(
-    //   tap(loaded => {
-    //     if (!loaded) {
-    //       this.store.dispatch(new GetHeroes());
-    //     }
-    //   }),
-    //   filter(loaded => loaded),
-    //   take(1)
-    // );
+    return this.heroesService.loaded$.pipe(
+      tap(loaded => {
+        if (!loaded) {
+          this.heroesService.getAll();
+        }
+      }),
+      filter(loaded => loaded),
+      take(1)
+    );
   }
 }
