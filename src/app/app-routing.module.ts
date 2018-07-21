@@ -12,17 +12,17 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [HeroesGuard]
+    // canActivate: [HeroesGuard]
   },
   {
     path: 'detail/:id',
     component: HeroDetailComponent,
-    canActivate: [SelectedHeroGuard]
+    // canActivate: [SelectedHeroGuard]
   },
   {
     path: 'heroes',
     component: HeroesComponent,
-    canActivate: [HeroesGuard]
+    // canActivate: [HeroesGuard]
   }
 ];
 
