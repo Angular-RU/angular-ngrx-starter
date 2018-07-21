@@ -8,16 +8,7 @@ import {
 import { Observable, Subject, of, combineLatest } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import {
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  tap,
-  first,
-  withLatestFrom,
-  map,
-  filter
-} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { Hero } from '@appModels/hero';
 
