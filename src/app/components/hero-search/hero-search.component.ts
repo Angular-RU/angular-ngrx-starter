@@ -8,7 +8,7 @@ import {
 import { Observable, Subject, of, combineLatest } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { map } from 'rxjs/operators';
+import { map, filter, switchMap, debounce, debounceTime } from 'rxjs/operators';
 
 import { Hero } from '@appModels/hero';
 
@@ -56,16 +56,20 @@ export class HeroSearchComponent implements OnInit, OnDestroy {
   }
 
   private getHeroes(): Observable<Hero[]> {
-    return combineLatest(this.heroesService.getAll(), this.searchTerm$).pipe(
-      map(([heroes, term]) => {
-        if (!term || !term.length) {
-          return [];
-        }
-
-        return heroes.filter(h =>
-          h.name.toLowerCase().includes(term.toLowerCase())
-        );
-      })
+    return this.searchTerm$.pipe(
+      filter(term => !!(term && term.length > 2)),
+      debounceTime(300),
+      switchMap(term =>
+        this.heroesService
+          .getAll()
+          .pipe(
+            map(heroes =>
+              heroes.filter(h =>
+                h.name.toLowerCase().includes(term.toLowerCase())
+              )
+            )
+          )
+      )
     );
   }
 }
