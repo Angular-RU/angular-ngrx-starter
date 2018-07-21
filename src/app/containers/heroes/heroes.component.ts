@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Hero } from '@appModels/hero';
 
 import { DeleteHero, AddHero } from '@appStore/actions/hero.actions';
+import { EntityServices, EntityCollectionService } from 'ngrx-data';
 
 @Component({
   selector: 'app-heroes',
@@ -16,11 +17,15 @@ import { DeleteHero, AddHero } from '@appStore/actions/hero.actions';
 })
 export class HeroesComponent implements OnInit {
   heroes$: Observable<Hero[]>;
+  heroesService: EntityCollectionService<Hero>;
 
-  constructor() {}
+  constructor(entityServices: EntityServices) {
+    this.heroesService = entityServices.getEntityCollectionService('Hero');
+  }
 
   ngOnInit() {
-    // this.heroes$ = this.store.pipe(select(fromSelectors.getHeroes));
+    this.heroes$ = this.heroesService.entities$;
+    this.heroesService.getAll();
   }
 
   add(name: string): void {
@@ -28,10 +33,11 @@ export class HeroesComponent implements OnInit {
     if (!name) {
       return;
     }
-    // this.store.dispatch(new AddHero({ name } as Hero));
+
+    this.heroesService.add({ name } as Hero);
   }
 
   delete(hero: Hero): void {
-    // this.store.dispatch(new DeleteHero(hero));
+    this.heroesService.delete(hero);
   }
 }
