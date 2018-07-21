@@ -1,11 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
 
 import { Hero } from '@appModels/hero';
 
-import * as fromSelectors from '@appStore/selectors';
-import * as fromReducers from '@appStore/reducers';
 import { EntityCollectionService, EntityServices } from 'ngrx-data';
 import { map } from 'rxjs/operators';
 

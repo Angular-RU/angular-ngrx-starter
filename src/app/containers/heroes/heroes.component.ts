@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 import { Hero } from '@appModels/hero';
 
-import { DeleteHero, AddHero } from '@appStore/actions/hero.actions';
 import { EntityServices, EntityCollectionService } from 'ngrx-data';
 
 @Component({
