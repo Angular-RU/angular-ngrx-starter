@@ -57,19 +57,9 @@ export class HeroSearchComponent implements OnInit, OnDestroy {
 
   private getHeroes(): Observable<Hero[]> {
     return this.searchTerm$.pipe(
-      filter(term => !!(term && term.length > 2)),
-      debounceTime(300),
-      switchMap(term =>
-        this.heroesService
-          .getAll()
-          .pipe(
-            map(heroes =>
-              heroes.filter(h =>
-                h.name.toLowerCase().includes(term.toLowerCase())
-              )
-            )
-          )
-      )
+      filter(term => !!(term && term.length > 1)),
+      debounceTime(200),
+      switchMap(term => this.heroesService.getWithQuery({ name: term }))
     );
   }
 }
