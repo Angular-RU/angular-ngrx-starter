@@ -5,7 +5,7 @@ import {
   OnDestroy
 } from '@angular/core';
 
-import { Observable ,  Subject ,  of } from 'rxjs';
+import { Observable, Subject, of, combineLatest } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import {
@@ -13,7 +13,10 @@ import {
   distinctUntilChanged,
   switchMap,
   tap,
-  first
+  first,
+  withLatestFrom,
+  map,
+  filter
 } from 'rxjs/operators';
 
 import { Hero } from '@appModels/hero';
@@ -27,6 +30,7 @@ import {
   SearchHeroesReset
 } from '@appStore/actions/hero.actions';
 import { SearchReset, Search } from '@appStore/actions/search.actions';
+import { EntityCollectionService, EntityServices } from 'ngrx-data';
 
 @Component({
   selector: 'app-hero-search',
@@ -37,12 +41,19 @@ import { SearchReset, Search } from '@appStore/actions/search.actions';
 export class HeroSearchComponent implements OnInit, OnDestroy {
   searchTerm$: Observable<string>;
   heroes$: Observable<Hero[]>;
+  heroesService: EntityCollectionService<Hero>;
 
-  constructor(private store: Store<fromStore.State>) {}
+  constructor(
+    entityServices: EntityServices,
+    private store: Store<fromStore.State>
+  ) {
+    this.heroesService = entityServices.getEntityCollectionService('Hero');
+  }
 
   ngOnInit(): void {
-    this.heroes$ = this.store.pipe(select(fromSelectors.getSearchHeroes));
     this.searchTerm$ = this.store.pipe(select(fromSelectors.getSearch));
+
+    this.heroes$ = this.getHeroes();
   }
 
   ngOnDestroy(): void {
@@ -51,5 +62,19 @@ export class HeroSearchComponent implements OnInit, OnDestroy {
 
   search(term: string): void {
     this.store.dispatch(new Search(term));
+  }
+
+  private getHeroes(): Observable<Hero[]> {
+    return combineLatest(this.heroesService.getAll(), this.searchTerm$).pipe(
+      map(([heroes, term]) => {
+        if (!term || !term.length) {
+          return [];
+        }
+
+        return heroes.filter(h =>
+          h.name.toLowerCase().includes(term.toLowerCase())
+        );
+      })
+    );
   }
 }

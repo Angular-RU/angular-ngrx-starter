@@ -7,6 +7,7 @@ import { Hero } from '@appModels/hero';
 import * as fromSelectors from '@appStore/selectors';
 import * as fromReducers from '@appStore/reducers';
 import { EntityCollectionService, EntityServices } from 'ngrx-data';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,10 +21,10 @@ export class DashboardComponent implements OnInit {
 
   constructor(entityServices: EntityServices) {
     this.heroesService = entityServices.getEntityCollectionService('Hero');
-    this.heroes$ = this.heroesService.entities$;
   }
-
+  
   ngOnInit() {
+    this.heroes$ = this.heroesService.entities$.pipe(map(e => e.slice(0, 4)));
     this.heroesService.getAll();
   }
 }
