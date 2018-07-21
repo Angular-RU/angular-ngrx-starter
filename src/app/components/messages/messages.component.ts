@@ -14,8 +14,10 @@ export class MessagesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.entityServices.reducedActions$.subscribe(res =>
-      this.messageService.add(res.type)
-    );
+    this.entityServices.reducedActions$.subscribe(res => {
+      if (res && res.type) {
+        this.messageService.add(res.type);
+      }
+    });
   }
 }
