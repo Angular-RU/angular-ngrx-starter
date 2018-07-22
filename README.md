@@ -1,7 +1,5 @@
 ## Angular-ngrx-starter
 
-Demo: https://stackblitz.com/github/Angular-RU/angular-ngrx-starter
-
 ## Состав [@ngrx/platform](https://github.com/ngrx/platform) :
 
 * [@ngrx/store](https://github.com/ngrx/platform/tree/master/docs/store/README.md) - менеджер состояний на основе RxJS для Angular приложений, вдохновленный Redux
@@ -11,6 +9,9 @@ Demo: https://stackblitz.com/github/Angular-RU/angular-ngrx-starter
   [powerful time-travelling debugger](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 * [@ngrx/entity](https://github.com/ngrx/platform/tree/master/docs/entity/README.md) - модуль для работы с коллекциями записей
 * [@ngrx/schematics](https://github.com/ngrx/platform/tree/master/docs/schematics/README.md) - добавляет в Angular-CLI возможность генерации каркаса NgRx компонентов.
+
+## Пример работы с библиотекой [angular-ngrx-data](https://github.com/johnpapa/angular-ngrx-data) :
+* [Быстрая генерация store с CRUD без entity, reducer и httpClient](https://github.com/Angular-RU/angular-ngrx-starter/tree/ngrx-data)
 
 ## Доклады с [ng-conf](http://ng-conf.org/)
 
