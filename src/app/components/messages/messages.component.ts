@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '@appServices/message.service';
-import { EntityServices } from 'ngrx-data';
+import {
+  EntityServices,
+  EntityCollectionReducerRegistry,
+  EntityCollectionReducerFactory,
+  EntityActionGuard
+} from 'ngrx-data';
 
 @Component({
   selector: 'app-messages',

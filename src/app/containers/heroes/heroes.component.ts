@@ -1,11 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-
-import { Store, select } from '@ngrx/store';
-
 import { Observable } from 'rxjs';
-
 import { Hero } from '@appModels/hero';
-
 import { EntityServices, EntityCollectionService } from 'ngrx-data';
 
 @Component({
@@ -27,11 +22,11 @@ export class HeroesComponent implements OnInit {
   }
 
   add(name: string): void {
-    name = name.trim();
     if (!name) {
       return;
     }
 
+    name = name.trim();
     this.heroesService.add({ name } as Hero);
   }
 
