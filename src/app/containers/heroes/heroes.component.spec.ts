@@ -3,22 +3,21 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Hero } from '@appModels/hero';
 import { HeroesComponent } from './heroes.component';
-import { EntityServices, EntityCollectionService } from 'ngrx-data';
+import { HeroesService } from '@appServices/heroes.service';
 
 describe('HeroesComponent', () => {
   let comp: HeroesComponent;
   let fixture: ComponentFixture<HeroesComponent>;
-  let entityServices: EntityServices;
+  let heroesService: HeroesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeroesComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [{ provide: EntityServices, useValue: {} }]
+      providers: [{ provide: HeroesService, useValue: {} }]
     });
 
-    entityServices = TestBed.get(EntityServices);
-    entityServices.getEntityCollectionService = jest.fn().mockReturnValue({});
+    heroesService = TestBed.get(HeroesService);
 
     fixture = TestBed.createComponent(HeroesComponent);
     comp = fixture.componentInstance;
@@ -30,20 +29,20 @@ describe('HeroesComponent', () => {
 
   describe('add', () => {
     it('makes expected calls', () => {
-      comp.heroesService.add = jest.fn();
+      heroesService.add = jest.fn();
 
       comp.add('test');
-      expect(comp.heroesService.add).toHaveBeenCalledTimes(1);
+      expect(heroesService.add).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('delete', () => {
     it('makes expected calls', () => {
       const mockHero = { id: 1, name: 'test' };
-      comp.heroesService.delete = jest.fn();
+      heroesService.delete = jest.fn();
 
       comp.delete(mockHero);
-      expect(comp.heroesService.delete).toHaveBeenCalledTimes(1);
+      expect(heroesService.delete).toHaveBeenCalledTimes(1);
     });
   });
 });
