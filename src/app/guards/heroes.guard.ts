@@ -5,24 +5,14 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 
-import { Store } from '@ngrx/store';
-
 import { Observable, of } from 'rxjs';
 import { switchMap, catchError, tap, filter, take } from 'rxjs/operators';
 
-import * as fromReducers from '@appStore/reducers';
-import * as fromSelectors from '@appStore/selectors';
-import { GetHeroes } from '@appStore/actions/hero.actions';
-import { EntityServices, EntityCollectionService } from 'ngrx-data';
-import { Hero } from '@appModels/hero';
+import { HeroesService } from '@appServices/heroes.service';
 
 @Injectable()
 export class HeroesGuard implements CanActivate {
-  heroesService: EntityCollectionService<Hero>;
-
-  constructor(entityServices: EntityServices) {
-    this.heroesService = entityServices.getEntityCollectionService('Hero');
-  }
+  constructor(private heroesService: HeroesService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,

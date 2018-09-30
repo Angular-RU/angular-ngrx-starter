@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 
 import { Hero } from '@appModels/hero';
 
-import { EntityCollectionService, EntityServices } from 'ngrx-data';
 import { map } from 'rxjs/operators';
+import { HeroesService } from '@appServices/heroes.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,12 +14,9 @@ import { map } from 'rxjs/operators';
 })
 export class DashboardComponent implements OnInit {
   heroes$: Observable<Hero[]>;
-  heroesService: EntityCollectionService<Hero>;
 
-  constructor(entityServices: EntityServices) {
-    this.heroesService = entityServices.getEntityCollectionService('Hero');
-  }
-  
+  constructor(private heroesService: HeroesService) {}
+
   ngOnInit() {
     this.heroes$ = this.heroesService.entities$.pipe(map(e => e.slice(0, 4)));
   }

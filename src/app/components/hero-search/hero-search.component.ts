@@ -21,7 +21,7 @@ import {
   SearchHeroesReset
 } from '@appStore/actions/hero.actions';
 import { SearchReset, Search } from '@appStore/actions/search.actions';
-import { EntityCollectionService, EntityServices } from 'ngrx-data';
+import { HeroesService } from '@appServices/heroes.service';
 
 @Component({
   selector: 'app-hero-search',
@@ -32,14 +32,11 @@ import { EntityCollectionService, EntityServices } from 'ngrx-data';
 export class HeroSearchComponent implements OnInit, OnDestroy {
   searchTerm$: Observable<string>;
   heroes$: Observable<Hero[]>;
-  heroesService: EntityCollectionService<Hero>;
 
   constructor(
-    entityServices: EntityServices,
+    private heroesService: HeroesService,
     private store: Store<fromStore.State>
-  ) {
-    this.heroesService = entityServices.getEntityCollectionService('Hero');
-  }
+  ) {}
 
   ngOnInit(): void {
     this.searchTerm$ = this.store.pipe(select(fromSelectors.getSearch));
