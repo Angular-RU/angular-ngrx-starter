@@ -16,7 +16,7 @@ import { Hero } from '@appModels/hero';
 import * as fromStore from '@appStore/index';
 
 import { Back } from '@appStore/actions/router.actions';
-import { EntityCollectionService, EntityServices } from 'ngrx-data';
+import { HeroesService } from '@appServices/heroes.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -26,15 +26,12 @@ import { EntityCollectionService, EntityServices } from 'ngrx-data';
 })
 export class HeroDetailComponent implements OnInit {
   hero$: Observable<Hero>;
-  heroesService: EntityCollectionService<Hero>;
 
   constructor(
-    entityServices: EntityServices,
+    private heroesService: HeroesService,
     private route: ActivatedRoute,
     private store: Store<fromStore.State>
-  ) {
-    this.heroesService = entityServices.getEntityCollectionService('Hero');
-  }
+  ) {}
 
   ngOnInit(): void {
     this.hero$ = this.heroesService.getByKey(this.route.snapshot.params['id']);

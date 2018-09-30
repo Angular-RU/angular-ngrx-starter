@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hero } from '@appModels/hero';
-import { EntityServices, EntityCollectionService } from 'ngrx-data';
+import { HeroesService } from '@appServices/heroes.service';
 
 @Component({
   selector: 'app-heroes',
@@ -11,10 +11,8 @@ import { EntityServices, EntityCollectionService } from 'ngrx-data';
 })
 export class HeroesComponent implements OnInit {
   heroes$: Observable<Hero[]>;
-  heroesService: EntityCollectionService<Hero>;
 
-  constructor(entityServices: EntityServices) {
-    this.heroesService = entityServices.getEntityCollectionService('Hero');
+  constructor(private heroesService: HeroesService) {
   }
 
   ngOnInit() {
