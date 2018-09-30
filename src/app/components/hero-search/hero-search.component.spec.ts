@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { HeroSearchComponent } from './hero-search.component';
-import { EntityServices } from 'ngrx-data';
 import { of } from 'rxjs';
+import { HeroesService } from '@appServices/heroes.service';
 
 describe('HeroSearchComponent', () => {
   let comp: HeroSearchComponent;
   let fixture: ComponentFixture<HeroSearchComponent>;
-  let entityServices: EntityServices;
+  let heroesService: HeroesService;
 
   beforeEach(() => {
     const storeStub = {
@@ -20,12 +20,11 @@ describe('HeroSearchComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: Store, useValue: storeStub },
-        { provide: EntityServices, useValue: {} }
+        { provide: HeroesService, useValue: {} }
       ]
     });
 
-    entityServices = TestBed.get(EntityServices);
-    entityServices.getEntityCollectionService = jest.fn().mockReturnValue({});
+    heroesService = TestBed.get(HeroesService);
 
     fixture = TestBed.createComponent(HeroSearchComponent);
     comp = fixture.componentInstance;
