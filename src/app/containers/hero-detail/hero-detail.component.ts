@@ -1,15 +1,14 @@
 import {
   Component,
   OnInit,
-  Input,
   ChangeDetectionStrategy
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 import { Hero } from '@appModels/hero';
 
@@ -42,6 +41,9 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(hero: Hero, name: string): void {
-    this.heroesService.update({ ...hero, name });
+    this.heroesService
+      .update({ ...hero, name })
+      .pipe(first())
+      .subscribe(() => this.goBack());
   }
 }
