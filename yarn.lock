@@ -5122,6 +5122,13 @@ neo-async@^2.5.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.2.tgz#489105ce7bc54e709d736b195f82135048c50fcc"
   integrity sha512-vdqTKI9GBIYcAEbFAcpKPErKINfPF5zIuz3/niBfq8WUZjpT2tytLlFVrBgWdOtqI4uaA/Rb6No0hux39XXDuw==
 
+ngrx-data@^6.1.0-beta.0:
+  version "6.1.0-beta.0"
+  resolved "https://registry.yarnpkg.com/ngrx-data/-/ngrx-data-6.1.0-beta.0.tgz#49b937a56fde5afc233c302161bd0b0de5cebd68"
+  integrity sha512-D0MgPZ/81EL+2ehYwVwGQzJH8LNKjMZeixqlLhE4GUGFzxzI8isV+3l//Wgv3Q0EqG78bA+n8bKUg33vw28Hdg==
+  dependencies:
+    tslib "^1.9.0"
+
 ngrx-store-freeze@^0.2.4:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/ngrx-store-freeze/-/ngrx-store-freeze-0.2.4.tgz#146687cdf7e21244eb9003c7e883f2125847076c"
