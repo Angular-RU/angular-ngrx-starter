@@ -1,10 +1,9 @@
-import { Observable } from 'rxjs/Observable';
-import { empty } from 'rxjs/observable/empty';
 import { Actions } from '@ngrx/effects';
+import { Observable } from 'rxjs';
 
 export class TestActions extends Actions {
   constructor() {
-    super(empty());
+    super();
   }
 
   set stream(source: Observable<any>) {
