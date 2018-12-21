@@ -16,10 +16,6 @@ import * as fromSelectors from '@appStore/selectors';
 
 import * as fromStore from '@appStore/index';
 
-import {
-  SearchHeroes,
-  SearchHeroesReset
-} from '@appStore/actions/hero.actions';
 import { SearchReset, Search } from '@appStore/actions/search.actions';
 import { HeroesService } from '@appServices/heroes.service';
 
