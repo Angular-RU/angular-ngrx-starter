@@ -4,15 +4,12 @@ import {
   Input,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
 import { Hero } from '@appModels/hero';
-import { HeroService } from '@appServices/hero.service';
 
 import * as fromSelectors from '@appStore/selectors';
 import * as fromReducer from '@appStore/reducers';

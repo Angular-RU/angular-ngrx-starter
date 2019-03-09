@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeroDetailComponent goBack makes expected calls 1`] = `
+Array [
+  Back {
+    "type": "[Router] Back",
+  },
+]
+`;
+
+exports[`HeroDetailComponent html show hero 1`] = `
+<div
+  id="root4"
+  ng-version="7.1.4"
+>
+  
+  <div>
+    <h2>
+      TEST HERO Details
+    </h2>
+    <div>
+      <span>
+        id: 
+      </span>
+      1
+    </div>
+    <div>
+      <label>
+        name: 
+        <input
+          placeholder="name"
+        />
+      </label>
+    </div>
+    <button>
+      go back
+    </button>
+    <button>
+      save
+    </button>
+  </div>
+</div>
+`;
+
+exports[`HeroDetailComponent save makes expected calls 1`] = `
+Array [
+  UpdateHero {
+    "payload": Object {
+      "id": 1,
+      "name": "new test name",
+    },
+    "type": "[Hero] update hero",
+  },
+]
+`;
