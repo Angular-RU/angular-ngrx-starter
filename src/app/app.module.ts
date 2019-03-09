@@ -63,8 +63,6 @@ import { CustomRouterStateSerializer } from '@appStore/router';
     HeroSearchComponent
   ],
   providers: [
-    HeroService,
-    MessageService,
     {
       provide: RouterStateSerializer,
       useClass: CustomRouterStateSerializer

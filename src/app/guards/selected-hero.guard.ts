@@ -7,7 +7,7 @@ import {
 
 import { Store } from '@ngrx/store';
 
-import { Observable ,  of ,  combineLatest } from 'rxjs';
+import { Observable, of, combineLatest } from 'rxjs';
 import { switchMap, catchError, tap, filter, take, map } from 'rxjs/operators';
 
 import * as fromReducers from '@appStore/reducers';
@@ -15,7 +15,7 @@ import * as fromSelectors from '@appStore/selectors';
 import { GetHeroes, GetHeroById } from '@appStore/actions/hero.actions';
 import { Hero } from '@appModels/hero';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SelectedHeroGuard implements CanActivate {
   constructor(private store: Store<fromReducers.hero.State>) {}
 
