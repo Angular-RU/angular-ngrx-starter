@@ -7,7 +7,7 @@
     "ng": "ng",
     "build": "ng build --prod",
     "start": "ng serve",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "tslint ./src/**/*.ts -t verbose",
@@ -49,8 +49,8 @@
     "@types/node": "^10.12.18",
     "codelyzer": "~4.5.0",
     "jasmine-marbles": "^0.4.1",
-    "jest": "^23.6.0",
-    "jest-preset-angular": "^6.0.2",
+    "jest": "24.3.1",
+    "jest-preset-angular": "7.0.0",
     "lodash": "^4.17.11",
     "phantomjs-prebuilt": "^2.1.16",
     "protractor": "~5.4.1",
@@ -65,7 +65,9 @@
       "/jest-config/",
       "/node_modules/"
     ],
-    "setupTestFrameworkScriptFile": "./jest-config/setup.ts",
+    "setupFilesAfterEnv": [
+      "./jest-config/setup.ts"
+    ],
     "moduleNameMapper": {
       "@appContainers/(.*)": "<rootDir>/src/app/containers/$1",
       "@appComponents/(.*)": "<rootDir>/src/app/components/$1",
