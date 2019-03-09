@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeroesComponent add makes expected calls 1`] = `
+Array [
+  AddHero {
+    "payload": Object {
+      "name": "test hero",
+    },
+    "type": "[Hero] add hero",
+  },
+]
+`;
+
+exports[`HeroesComponent delete makes expected calls 1`] = `
+Array [
+  DeleteHero {
+    "payload": Object {
+      "id": 1,
+      "name": "test hero",
+    },
+    "type": "[Hero] delete hero",
+  },
+]
+`;

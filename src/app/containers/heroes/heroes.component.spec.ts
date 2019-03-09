@@ -1,26 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Hero } from '@appModels/hero';
 import { HeroesComponent } from './heroes.component';
+import * as fromReducer from '@appStore/reducers';
+import { mock, instance, verify, anything, spy, capture } from 'ts-mockito';
 
 describe('HeroesComponent', () => {
   let comp: HeroesComponent;
   let fixture: ComponentFixture<HeroesComponent>;
+  let storeMock: Store<fromReducer.hero.State>;
+  const mockHero = {
+    id: 1,
+    name: 'test hero'
+  };
 
   beforeEach(() => {
-    const storeStub = {
-      pipe: () => ({}),
-      dispatch: () => ({})
-    };
-    const heroStub = {};
+    storeMock = mock(Store);
+
     TestBed.configureTestingModule({
       declarations: [HeroesComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [
-        { provide: Store, useValue: storeStub },
-        { provide: Hero, useValue: heroStub }
-      ]
+      providers: [{ provide: Store, useFactory: () => instance(storeMock) }]
     });
     fixture = TestBed.createComponent(HeroesComponent);
     comp = fixture.componentInstance;
@@ -30,22 +30,39 @@ describe('HeroesComponent', () => {
     expect(comp).toBeTruthy();
   });
 
+  describe('add', () => {
+    it('makes expected calls', () => {
+      const addSpy = spy(fixture.debugElement.injector.get(Store));
+
+      comp.add(' test hero ');
+
+      verify(storeMock.dispatch(anything())).once();
+      expect(capture(addSpy.dispatch).last()).toMatchSnapshot();
+    });
+
+    it('return when name empty', () => {
+      comp.add('');
+
+      verify(storeMock.dispatch(anything())).never();
+    });
+  });
+
   describe('delete', () => {
     it('makes expected calls', () => {
-      const storeStub: Store<any> = fixture.debugElement.injector.get(Store);
-      const heroStub: Hero = fixture.debugElement.injector.get(Hero);
-      spyOn(storeStub, 'dispatch');
-      comp.delete(heroStub);
-      expect(storeStub.dispatch).toHaveBeenCalled();
+      const deleteSpy = spy(fixture.debugElement.injector.get(Store));
+
+      comp.delete(mockHero);
+
+      verify(storeMock.dispatch(anything())).once();
+      expect(capture(deleteSpy.dispatch).last()).toMatchSnapshot();
     });
   });
 
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
-      const storeStub: Store<any> = fixture.debugElement.injector.get(Store);
-      spyOn(storeStub, 'pipe');
       comp.ngOnInit();
-      expect(storeStub.pipe).toHaveBeenCalled();
+
+      verify(storeMock.pipe(anything())).once();
     });
   });
 });
