@@ -2,20 +2,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { HeroSearchComponent } from './hero-search.component';
+import * as fromStore from '@appStore/index';
+import { mock, instance, verify, anything, spy, capture } from 'ts-mockito';
 
 describe('HeroSearchComponent', () => {
   let comp: HeroSearchComponent;
   let fixture: ComponentFixture<HeroSearchComponent>;
+  let storeMock: Store<fromStore.State>;
 
   beforeEach(() => {
-    const storeStub = {
-      pipe: () => ({}),
-      dispatch: () => ({})
-    };
+    storeMock = mock(Store);
+
     TestBed.configureTestingModule({
       declarations: [HeroSearchComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [{ provide: Store, useValue: storeStub }]
+      providers: [{ provide: Store, useFactory: () => instance(storeMock) }]
     });
     fixture = TestBed.createComponent(HeroSearchComponent);
     comp = fixture.componentInstance;
@@ -27,19 +28,31 @@ describe('HeroSearchComponent', () => {
 
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
-      const storeStub: Store<any> = fixture.debugElement.injector.get(Store);
-      spyOn(storeStub, 'pipe');
       comp.ngOnInit();
-      expect(storeStub.pipe).toHaveBeenCalled();
+
+      verify(storeMock.pipe(anything())).twice();
     });
   });
 
   describe('ngOnDestroy', () => {
     it('makes expected calls', () => {
-      const storeStub: Store<any> = fixture.debugElement.injector.get(Store);
-      spyOn(storeStub, 'dispatch');
+      const resetSpy = spy(fixture.debugElement.injector.get(Store));
+
       comp.ngOnDestroy();
-      expect(storeStub.dispatch).toHaveBeenCalled();
+
+      verify(storeMock.dispatch(anything())).once();
+      expect(capture(resetSpy.dispatch).last()).toMatchSnapshot();
+    });
+  });
+
+  describe('search', () => {
+    it('makes expected calls', () => {
+      const resetSpy = spy(fixture.debugElement.injector.get(Store));
+
+      comp.search('test search');
+
+      verify(storeMock.dispatch(anything())).once();
+      expect(capture(resetSpy.dispatch).last()).toMatchSnapshot();
     });
   });
 });

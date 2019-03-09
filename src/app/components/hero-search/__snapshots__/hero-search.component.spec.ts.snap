@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeroSearchComponent ngOnDestroy makes expected calls 1`] = `
+Array [
+  SearchReset {
+    "type": "[Search] Search reset",
+  },
+]
+`;
+
+exports[`HeroSearchComponent search makes expected calls 1`] = `
+Array [
+  Search {
+    "payload": "test search",
+    "type": "[Search] Search",
+  },
+]
+`;

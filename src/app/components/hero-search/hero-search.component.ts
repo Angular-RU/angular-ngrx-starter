@@ -8,24 +8,11 @@ import {
 import { Observable ,  Subject ,  of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import {
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  tap,
-  first
-} from 'rxjs/operators';
-
 import { Hero } from '@appModels/hero';
 
 import * as fromSelectors from '@appStore/selectors';
-
 import * as fromStore from '@appStore/index';
 
-import {
-  SearchHeroes,
-  SearchHeroesReset
-} from '@appStore/actions/hero.actions';
 import { SearchReset, Search } from '@appStore/actions/search.actions';
 
 @Component({
