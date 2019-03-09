@@ -5,16 +5,8 @@
     "baseUrl": "./",
     "module": "commonjs",
     "target": "es5",
-    "types": [
-      "jasmine",
-      "node"
-    ]
+    "allowJs": true,
+    "types": ["node", "jest"]
   },
-  "files": [
-    "test.ts"
-  ],
-  "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts"
-  ]
+  "include": ["**/*.spec.ts", "**/*.d.ts"]
 }
