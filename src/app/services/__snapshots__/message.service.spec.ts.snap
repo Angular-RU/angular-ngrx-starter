@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageService should add message 1`] = `
+Array [
+  "test message",
+]
+`;
+
+exports[`MessageService should clear messages 1`] = `Array []`;
