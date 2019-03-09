@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessagesComponent should show messages 1`] = `
+<div
+  id="root1"
+  ng-version="7.1.4"
+>
+  
+  <div>
+    <h2>
+      Messages
+    </h2>
+    <button
+      class="clear"
+    >
+      clear
+    </button>
+    
+    <div>
+       test message 
+    </div>
+    <div>
+       test message 2 
+    </div>
+  </div>
+</div>
+`;
