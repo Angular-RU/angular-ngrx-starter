@@ -3,10 +3,9 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import { Hero } from '@appModels/hero';
-import { HeroService } from '@appServices/hero.service';
 
 import * as fromSelectors from '@appStore/selectors';
-import * as fromReducers from '@appStore/reducers';
+import * as fromReducer from '@appStore/reducers';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +16,7 @@ import * as fromReducers from '@appStore/reducers';
 export class DashboardComponent implements OnInit {
   topHeroes$: Observable<Hero[]>;
 
-  constructor(private store: Store<fromReducers.hero.State>) {}
+  constructor(private store: Store<fromReducer.hero.State>) {}
 
   ngOnInit() {
     this.topHeroes$ = this.store.pipe(select(fromSelectors.getTopHeroes));
